@@ -17,30 +17,90 @@
     <div class="header__line"></div>
     </header>
 
-    <section class="profile">
-
-        
-    </section>
-
-
-
     <main class="content">
-    <section class="">
 
+        <section class="profile">
+            <img src="./images/image.jpg" alt="Аватарка пользователя" class="profile__avatar">
+            <div class="profile-info">
+            <h1 class="profile-info__title">Жак-Ив Кусто</h1>
+            <button class="profile-info__edit-button">
+                <img class="profile-info__edit-button-image">
+            </button>
+            <p class="profile-info__subtitle">Исследователь океана</p>
+            </div>
+            <button class="profile__add-button">
+                <img class="profile-info__add-button-image">
+            </button>       
         </section>
-
-
-
-
-
+    
+        <section class="elements">
+            <ul class="element">
+                <li>
+                <img class="element__image" src="./images/karachaevsk.jpg" alt="Здание в Карачаевске">
+                    <div class="element__info">
+                <h2 class="element__title">Карачаевск</h2>
+                <img class="element__like-image">
+                    </div>
+                </li>
+                <li>
+                    <img class="element__image" src="./images/gora.jpg" alt="Гора Эльбрус">
+                        <div class="element__info">
+                    <h2 class="element__title">Гора Эльбрус</h2>
+                    <img class="element__like-image">
+                        </div>
+                    </li>
+                    <li>
+                        <img class="element__image" src="./images/gombai.jpg" alt="Домбай">
+                            <div class="element__info">
+                        <h2 class="element__title">Домбай</h2>
+                        <img class="element__like-image">
+                            </div>
+                        </li>
+                        <li>
+                            <img class="element__image" src="./images/gora.jpg" alt="Гора Эльбрус">
+                                <div class="element__info">
+                            <h2 class="element__title">Гора Эльбрус</h2>
+                            <img class="element__like-image">
+                                </div>
+                            </li>
+                            <li>
+                                <img class="element__image" src="./images/gombai.jpg" alt="Домбай">
+                                    <div class="element__info">
+                                <h2 class="element__title">Домбай</h2>
+                                <img class="element__like-image">
+                                    </div>
+                                </li>
+                                <li>
+                                    <img class="element__image" src="./images/karachaevsk.jpg" alt="Здание в Карачаевске">
+                                        <div class="element__info">
+                                    <h2 class="element__title">Карачаево-Черкесия</h2>
+                                    <img class="element__like-image">
+                                        </div>
+                                    </li>
+            </ul>
+        </section>
     </main>
 
-
-
     <footer class="footer">
+        <p class="footer__author">© 2020 Mesto Russia</p>
 </footer>
 </div>
 </div>
+<section class="popup">
+    <div class="popup__container">
+        <button class="popup__close">
+            <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть попап">
+        </button>
+    <div class="popup__content">
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form class="popup__form">
+            <input type="text" value="Жак-Ив Кусто" name="fullname" class="popup__profile-title">
+            <input type="text" value="Исследователь океана" name="job" class="popup__profile-subtitle">
+            <button class="popup__submit-button" type="submit" value="Сохранить">Сохранить</button>
+        </form>
+    </div>
+</div>
+</section>
 <script src="./scripts/index.js" defer></script>
 </body>
 </html>

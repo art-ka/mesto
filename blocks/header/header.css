@@ -3,3 +3,11 @@
     width: 68.91%;
     margin: auto;
 }
+
+@media screen and (max-width: 768px) and (min-width: 320px) {
+    .header {
+        padding-top: 28px;
+        padding-bottom: 38.25px;
+        width: 100%;
+    }
+}

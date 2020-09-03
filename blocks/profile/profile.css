@@ -1,3 +1,25 @@
 .profile {
-    padding-top: 36.25px;
+    padding-top: 40px;
+    width: 68.91%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 120px 381px 150px;
+    padding-bottom: 47.25px;
+}
+
+@media screen and (max-width: 768px) and (min-width: 320px) {
+    .profile {
+        width: 100%;    
+        padding-top: 38.25px;
+        padding-bottom: 36px;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 1279px) and (min-width: 768px) {
+    .profile {
+        grid-template-columns: 120px 381px;
+        grid-template-rows: 1fr 50px;
+        row-gap: 5px;
+    }
 }
