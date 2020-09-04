@@ -16,10 +16,23 @@
     }
 }
 
-@media screen and (max-width: 1279px) and (min-width: 768px) {
+@media screen and (max-width: 769px) and (min-width: 768px) {
     .profile {
         grid-template-columns: 120px 381px;
         grid-template-rows: 1fr 50px;
         row-gap: 5px;
+        width: 70%;
+        margin: 0;
+        margin-left: 6%;
+    }
+}
+
+@media screen and (max-width: 1279px) and (min-width: 769px) {
+    .profile {
+        grid-template-columns: 120px 381px;
+        grid-template-rows: 1fr 50px;
+        row-gap: 5px;
+        width: 70%;
+        margin-left: 15%;
     }
 }
