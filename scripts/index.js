@@ -21,14 +21,14 @@ function getValue () {
     let title = document.querySelector('.profile__title');
     let subtitle = document.querySelector('.profile__subtitle');
 
-    let name1 = title.innerHTML;
-    let job1 = subtitle.innerHTML;
+    let nameProfile = title.innerHTML;
+    let jobProfile = subtitle.innerHTML;
 
-    let nInput = formElement.querySelector('.popup__field_name_text');
-    let jInput = formElement.querySelector('.popup__field_job_text');
+    let nInput = formElement.querySelector('.popup__field_text_name');
+    let jInput = formElement.querySelector('.popup__field_text_job');
 
-    nInput.value = name1;
-    jInput.value = job1;
+    nInput.value = nameProfile;
+    jInput.value = jobProfile;
 }
 
 popupOpenButton.addEventListener('click', getValue);
@@ -41,8 +41,8 @@ function formSubmitHandler (evt) {
                         // О том, как это делать, расскажем позже.
                         
     // Находим поля формы в DOM
-    let nameInput = formElement.querySelector('.popup__field_name_text');
-    let jobInput = formElement.querySelector('.popup__field_job_text');
+    let nameInput = formElement.querySelector('.popup__field_text_name');
+    let jobInput = formElement.querySelector('.popup__field_text_job');
 
       // Получите значение полей из свойства value
     let name = nameInput.value;
