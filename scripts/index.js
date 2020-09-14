@@ -135,12 +135,15 @@ function renderItem(cardItem, index) {
 
     deleteButton.setAttribute("id", index);
 
+    deleteButton.addEventListener('click', handleDelete);
+
+
     elementOnline.appendChild(cardElement);
 }
 
 
 function getIdFromEvent(event) {
-	return event.target.parentNode.parentNode.getAttribute("id");
+	return event.target.getAttribute("id");
 }
 
 function render() {
@@ -151,13 +154,12 @@ function render() {
 }
 
 function handleDelete(event) {
-	const index = getIdFromEvent(event);
+    const index = getIdFromEvent(event);
 	initialCards.splice(index, 1);
 	render();
 }
 
 render();
-
 
 
 
