@@ -120,7 +120,7 @@ const initialCards = [
 const elementTemplate = document.querySelector('#elements').content;  
 const elementOnline = document.querySelector('.element');
 
-function renderItem(cardItem) {
+function renderItem(cardItem, index) {
     //const htmlElement = itemTemplate.cloneNode(true);
     const cardElement = elementTemplate.cloneNode(true);
 
@@ -129,12 +129,47 @@ function renderItem(cardItem) {
 
     cardElement.querySelector('.element__image').src = cardItem.link;
     //htmlElement.querySelector(".list__item").setAttribute("id", index);
+    //	htmlElement.querySelector(".list__item").setAttribute("id", index);
+
+    const deleteButton = cardElement.querySelector(".element__delete-button");
+
+    deleteButton.setAttribute("id", index);
+
     elementOnline.appendChild(cardElement);
 }
 
-initialCards.forEach(renderItem);
+
+function getIdFromEvent(event) {
+	return event.target.parentNode.parentNode.getAttribute("id");
+}
+
+function render() {
+	elementOnline.innerHTML = "";
+    initialCards.forEach(renderItem);
+    
+	//setListeners();
+}
+
+function handleDelete(event) {
+	const index = getIdFromEvent(event);
+	initialCards.splice(index, 1);
+	render();
+}
+
+render();
 
 
+
+
+
+
+/*
+const deletButton = document.querySelector('.element__delete-button');
+const test = document.querySelector('.profile__subtitle');
+
+deletButton.addEventListener('click', function () {
+    test.remove();
+});
 
 
 
@@ -208,18 +243,6 @@ initialCards.forEach(renderItem);
 
     elementOnline.append(cardElementArhyz);
 
-
-
-
-
-/*
-
-const deletButton = document.querySelector('.element__delet-button');
-const test = document.querySelector('.element__image');
-
-deletButton.addEventListener('click', function () {
-    test.remove();
-});
 
 
 

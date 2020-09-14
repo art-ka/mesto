@@ -1,4 +1,4 @@
-.element__delet-button {
+.element__delete-button {
     background: url(../../../images/basket.svg);
     background-repeat: no-repeat;
     z-index: 1;
@@ -14,7 +14,7 @@
 }
 
 
-.element__delet-button:hover {
+.element__delete-button:hover {
     background: url(../../../images/basket-del.svg);
     background-repeat: no-repeat;
     background-size: contain;
