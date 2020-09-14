@@ -1,0 +1,25 @@
+.element__delet-button {
+    background: url(../../../images/basket.svg);
+    background-repeat: no-repeat;
+    z-index: 1;
+    margin-top: -95.4%;
+    left: 88.2%;
+    width: 18px;
+    height: 19px;
+    border: none;
+    outline: none;
+    background-size: contain;
+    margin-left: 0;
+    position: absolute;
+}
+
+
+.element__delet-button:hover {
+    background: url(../../../images/basket-del.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 18px;
+    height: 19px;
+    transition-duration: .2s;
+    cursor: pointer;
+}

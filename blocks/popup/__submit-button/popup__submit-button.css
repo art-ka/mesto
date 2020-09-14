@@ -22,3 +22,11 @@
 .popup__submit-button:focus {
     outline: 0;
 }
+
+@media screen and (max-width: 532px) and (min-width: 320px) {
+    .popup__submit-button {
+        margin-top: 36px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
