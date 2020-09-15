@@ -192,33 +192,38 @@ function handleSubmit() {
 
 formAddButton.addEventListener("click", handleSubmit);
 
-/*
-function formSubmitHandler (evt) {
+
+function addSubmitHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
                         // Так мы можем определить свою логику отправки.
                         // О том, как это делать, расскажем позже.
                         
     // Находим поля формы в DOM
-    let nameInput = formElement.querySelector('.popup__field_text_name');
-    let jobInput = formElement.querySelector('.popup__field_text_job');
+    let titleInput = document.querySelector('.popup__field_text_title');
+    let imageInput = document.querySelector('.popup__field_image_place');
 
       // Получите значение полей из свойства value
-    let name = nameInput.value;
-    let job = jobInput.value; 
+    let title = titleInput.value;
+    let image = imageInput.value; 
 
     // Выберите элементы, куда должны быть вставлены значения полей
-    let profileTitle = document.querySelector('.profile__title');
-    let profileSubtitle = document.querySelector('.profile__subtitle');
+    let elementTitle = document.querySelector('.element__title');
+    let elementImage = document.querySelector('.element__image');
 
     // Вставьте новые значения с помощью textContent
-    profileTitle.textContent = name;
-    profileSubtitle.textContent = job;
+    elementTitle.textContent = title;
+    elementImage.src = image;
 
-    popupToggle();
+    initialCards.unshift({name: title, link: image});
+    render();
+
+    popupAddToggle();
+    
 }
 
 // Прикрепляем обработчик к форме:
 // он будет следить за событием “submit” - «отправка»
 
-formElement.addEventListener('submit', formSubmitHandler); 
-*/
+const formAddElement = document.querySelector('.popup__form_add_js');
+
+formAddElement.addEventListener('submit', addSubmitHandler); 
