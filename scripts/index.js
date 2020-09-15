@@ -1,29 +1,31 @@
-let popup = document.querySelector('.popup');
-let popupOpenButton = document.querySelector('.profile__edit-button');
-let popupCloseButton = document.querySelector('.popup__close');
-let popupOpenAddButton = document.querySelector('.profile__add-button');
-let popupAdd = document.querySelector('.popup_type_add');
-let popupCloseAddButton = document.querySelector('.popup__close_type_addform');
+const popupOpenButton = document.querySelector('.profile__edit-button');
+const popupCloseButton = document.querySelector('.popup__close_type_editform');
+const popupEdit = document.querySelector('.popup_type_edit');
 
-const popupToggle = function () {
+const popupOpenAddButton = document.querySelector('.profile__add-button');
+const popupCloseAddButton = document.querySelector('.popup__close_type_addform');
+const popupAdd = document.querySelector('.popup_type_add');
+
+
+const popupToggle = function (popup) {
         popup.classList.toggle('popup_opened');
     }
 
-    popupOpenButton.addEventListener('click', popupToggle);
+console.log(popupToggle);
 
-    popupCloseButton.addEventListener('click', popupToggle);
+// открытие окна ред
+popupOpenButton.addEventListener('click',  (evt) => popupToggle(popupEdit));
+// закрытие окна ред
+popupCloseButton.addEventListener('click',  (evt) => popupToggle(popupEdit));
 
-    const popupAddToggle = function () {
-        popupAdd.classList.toggle('popup_opened');
-    }
-
-    popupOpenAddButton.addEventListener('click', popupAddToggle);
-
-    popupCloseAddButton.addEventListener('click', popupAddToggle);
+// открытие окна добавления
+popupOpenAddButton.addEventListener('click',  (evt) => popupToggle(popupAdd));
+//закрытие окна добавления
+popupCloseAddButton.addEventListener('click',  (evt) => popupToggle(popupAdd));
 
 // Находим форму в DOM
 
-let formElement = popup.querySelector('.popup__form'); 
+let formElement = popupEdit.querySelector('.popup__form'); 
 let submitInput = formElement.querySelector('.popup__submit-button');
 
 function getValue () {
@@ -66,7 +68,7 @@ function formSubmitHandler (evt) {
     profileTitle.textContent = name;
     profileSubtitle.textContent = job;
 
-    popupToggle();
+    popupToggle(popupEdit);
 }
 
 // Прикрепляем обработчик к форме:
@@ -80,10 +82,11 @@ const popupCloseByClickOnOverlay = (event) => {
     return;
     }
 
-    popupToggle(event);
+    popupToggle(event.target);
 }
 
-popup.addEventListener('click', popupCloseByClickOnOverlay);
+popupEdit.addEventListener('click', popupCloseByClickOnOverlay);
+popupAdd.addEventListener('click', popupCloseByClickOnOverlay);
 
 
 
@@ -171,26 +174,7 @@ function handleDelete(event) {
 
 render();
 
-//
 const formAddButton = document.querySelector('.popup__submit-button');
-
-const state = {
-	mode: "add",
-	index: null,
-};
-
-function handleSubmit() {
-	const text = formInput.value;
-	if (state.mode === "add") {
-		items.unshift(text);
-	} else if (state.mode === "edit") {
-		items[state.index] = text;
-	}
-
-	render();
-}
-
-formAddButton.addEventListener("click", handleSubmit);
 
 
 function addSubmitHandler (evt) {
@@ -217,7 +201,7 @@ function addSubmitHandler (evt) {
     initialCards.unshift({name: title, link: image});
     render();
 
-    popupAddToggle();
+    popupToggle(popupAdd);
     
 }
 
@@ -227,3 +211,4 @@ function addSubmitHandler (evt) {
 const formAddElement = document.querySelector('.popup__form_add_js');
 
 formAddElement.addEventListener('submit', addSubmitHandler); 
+
