@@ -149,7 +149,6 @@ function render() {
     const likeImage = document.querySelectorAll('.element__like-image');
 
     likeImage.forEach(item => {
-        console.log(item);
         item.addEventListener('click', event => {
             item.classList.toggle('element__like-image-active');
         });
