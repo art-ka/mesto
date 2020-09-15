@@ -3,6 +3,7 @@
     border: 0;
     border-radius: 10px;
     padding: 0;
+    outline: none;
 }
 
 .element__like-button:hover {

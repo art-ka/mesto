@@ -121,22 +121,17 @@ const elementTemplate = document.querySelector('#elements').content;
 const elementOnline = document.querySelector('.element');
 
 function renderItem(cardItem, index) {
-    //const htmlElement = itemTemplate.cloneNode(true);
     const cardElement = elementTemplate.cloneNode(true);
 
-    //htmlElement.querySelector(".item__text").innerText = text;
     cardElement.querySelector('.element__title').innerText = cardItem.name;
 
     cardElement.querySelector('.element__image').src = cardItem.link;
-    //htmlElement.querySelector(".list__item").setAttribute("id", index);
-    //	htmlElement.querySelector(".list__item").setAttribute("id", index);
 
     const deleteButton = cardElement.querySelector(".element__delete-button");
 
     deleteButton.setAttribute("id", index);
 
     deleteButton.addEventListener('click', handleDelete);
-
 
     elementOnline.appendChild(cardElement);
 }
@@ -150,7 +145,15 @@ function render() {
 	elementOnline.innerHTML = "";
     initialCards.forEach(renderItem);
     
-	//setListeners();
+    //setListeners();
+    const likeImage = document.querySelectorAll('.element__like-image');
+
+    likeImage.forEach(item => {
+        console.log(item);
+        item.addEventListener('click', event => {
+            item.classList.toggle('element__like-image-active');
+        });
+    });
 }
 
 function handleDelete(event) {
@@ -163,120 +166,3 @@ render();
 
 
 
-
-
-/*
-const deletButton = document.querySelector('.element__delete-button');
-const test = document.querySelector('.profile__subtitle');
-
-deletButton.addEventListener('click', function () {
-    test.remove();
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-    const elementTemplate = document.querySelector('#elements').content;  
-    const elementOnline = document.querySelector('.element');
-
-    const cardElement = elementTemplate.cloneNode(true);
-    
-    const initialCards = [
-        {
-            name: 'Архыз',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-        },
-        {
-            name: 'Челябинская область',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-        },
-        {
-            name: 'Иваново',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-        },
-        {
-            name: 'Камчатка',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-        },
-        {
-            name: 'Холмогорский район',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-        },
-        {
-            name: 'Байкал',
-            link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-        }
-    ];
-
-
-
-
-
-//cardElement.querySelector('.element__title').textContent = name;
-//cardElement.querySelector('.element__image').src = link;
-
-
-
-    cardElement.querySelector('.element__title').textContent = 'Холмогорский район';
-    cardElement.querySelector('.element__image').src = 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg';
-
-    elementOnline.append(cardElement);
-
-    const cardElementArhyz = elementTemplate.cloneNode(true);
-    cardElementArhyz.querySelector('.element__title').textContent = 'Архыз';
-    cardElementArhyz.querySelector('.element__image').src = 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg';
-
-    elementOnline.append(cardElementArhyz);
-
-
-
-
-
-
-
-/*
-
-function addelement(name, link) {
-    const elementTemplate = document.querySelector('#elements').content;
-    const cardElement = elementTemplate.cloneNode(true);
-
-    cardElement.querySelector('.element__title').textContent = name;
-    cardElement.querySelector('.element__image').src = link;
-
-  songElement.querySelector('.song__like').addEventListener('click', function (evt) {
-  song__like.classList.toggle('song__like_active');
-});
-  
-  songsContainer.append(songElement);
-}
-
-addButton.addEventListener('click', function () {
-  const artist = document.querySelector('.input__text_type_artist');
-  const title = document.querySelector('.input__text_type_title');
-
-  addSong(artist.value, title.value);
-  renderHasSongs();
-
-  artist.value = '';
-  title.value = '';
-});
-
-
-*/
