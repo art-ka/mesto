@@ -133,6 +133,12 @@ function renderItem(cardItem, index) {
 
     deleteButton.addEventListener('click', handleDelete);
 
+    const likeButton = cardElement.querySelector('.element__like-image');
+    likeButton.setAttribute("id", index);
+    if(cardItem.like) {
+        likeButton.classList.toggle('element__like-image-active')
+    }
+
     elementOnline.appendChild(cardElement);
 }
 
@@ -150,6 +156,8 @@ function render() {
 
     likeImage.forEach(item => {
         item.addEventListener('click', event => {
+            const index = item.getAttribute('id');
+            initialCards[index].like = !initialCards[index].like;
             item.classList.toggle('element__like-image-active');
         });
     });
@@ -163,5 +171,54 @@ function handleDelete(event) {
 
 render();
 
+//
+const formAddButton = document.querySelector('.popup__submit-button');
 
+const state = {
+	mode: "add",
+	index: null,
+};
 
+function handleSubmit() {
+	const text = formInput.value;
+	if (state.mode === "add") {
+		items.unshift(text);
+	} else if (state.mode === "edit") {
+		items[state.index] = text;
+	}
+
+	render();
+}
+
+formAddButton.addEventListener("click", handleSubmit);
+
+/*
+function formSubmitHandler (evt) {
+    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
+                        // Так мы можем определить свою логику отправки.
+                        // О том, как это делать, расскажем позже.
+                        
+    // Находим поля формы в DOM
+    let nameInput = formElement.querySelector('.popup__field_text_name');
+    let jobInput = formElement.querySelector('.popup__field_text_job');
+
+      // Получите значение полей из свойства value
+    let name = nameInput.value;
+    let job = jobInput.value; 
+
+    // Выберите элементы, куда должны быть вставлены значения полей
+    let profileTitle = document.querySelector('.profile__title');
+    let profileSubtitle = document.querySelector('.profile__subtitle');
+
+    // Вставьте новые значения с помощью textContent
+    profileTitle.textContent = name;
+    profileSubtitle.textContent = job;
+
+    popupToggle();
+}
+
+// Прикрепляем обработчик к форме:
+// он будет следить за событием “submit” - «отправка»
+
+formElement.addEventListener('submit', formSubmitHandler); 
+*/
