@@ -6,7 +6,6 @@ const popupOpenAddButton = document.querySelector('.profile__add-button');
 const popupCloseAddButton = document.querySelector('.popup__close_type_addform');
 const popupAdd = document.querySelector('.popup_type_add');
 
-const popupOpenImg = document.querySelector('.element__image');
 const popupCloseImg = document.querySelector('.popup__close_type_img');
 const popupWithImage = document.querySelector('.popup_type_img');
 
@@ -100,9 +99,6 @@ popupEdit.addEventListener('click', popupCloseByClickOnOverlay);
 popupAdd.addEventListener('click', popupCloseByClickOnOverlay);
 popupWithImage.addEventListener('click', popupCloseByClickOnOverlay);
 
-
-//NEW
-
 const initialCards = [
     {
         name: 'Архыз',
@@ -129,7 +125,6 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
-
 
 const elementTemplate = document.querySelector('#elements').content;  
 const elementOnline = document.querySelector('.element');
