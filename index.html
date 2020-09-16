@@ -46,6 +46,10 @@
                             </button>
                             <button class="element__delete-button" type="button"></button>
                         </div>
+
+                        
+
+
                     </li>
                 </template>
 
@@ -58,7 +62,7 @@
     <section class="popup popup_type_edit">
         <div class="popup__container">
             <button class="popup__close popup__close_type_editform" type="button">
-                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть попап">
+                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть форму редактирования">
             </button>
             <div class="popup__content">
                 <h3 class="popup__title">Редактировать профиль</h3>
@@ -74,7 +78,7 @@
     <section class="popup popup_type_add">
         <div class="popup__container">
             <button class="popup__close popup__close_type_addform" type="button">
-                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть попап">
+                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть окно добавления">
             </button>
             <div class="popup__content">
                 <h3 class="popup__title">Новое место</h3>
@@ -87,6 +91,16 @@
                 </form>
             </div>
         </div>
+    </section>
+
+    <section class="popup popup_type_img">
+        <div class="popup__container-img">
+        <button class="popup__close popup__close_type_img" type="button">
+            <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть окно просмотра изображения">
+        </button>
+    <img class="element__image element__image_size_full" src="">
+        <h2 class="element__title element__title_place_popup"></h2>
+    </div>
     </section>
 
     <script src="./scripts/index.js" defer></script>

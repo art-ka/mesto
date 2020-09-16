@@ -5,3 +5,7 @@
     margin-bottom: 0;
     display: block;
 }
+
+.element__image:hover {
+    cursor: pointer;
+}

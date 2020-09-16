@@ -6,12 +6,14 @@ const popupOpenAddButton = document.querySelector('.profile__add-button');
 const popupCloseAddButton = document.querySelector('.popup__close_type_addform');
 const popupAdd = document.querySelector('.popup_type_add');
 
+const popupOpenImg = document.querySelector('.element__image');
+const popupCloseImg = document.querySelector('.popup__close_type_img');
+const popupImg = document.querySelector('.popup_type_img');
+
 
 const popupToggle = function (popup) {
         popup.classList.toggle('popup_opened');
     }
-
-console.log(popupToggle);
 
 // открытие окна ред
 popupOpenButton.addEventListener('click',  (evt) => popupToggle(popupEdit));
@@ -20,8 +22,14 @@ popupCloseButton.addEventListener('click',  (evt) => popupToggle(popupEdit));
 
 // открытие окна добавления
 popupOpenAddButton.addEventListener('click',  (evt) => popupToggle(popupAdd));
-//закрытие окна добавления
+// закрытие окна добавления
 popupCloseAddButton.addEventListener('click',  (evt) => popupToggle(popupAdd));
+
+
+const pOpenImg = document.querySelector('.elements');
+
+pOpenImg.addEventListener('click',  (evt) => popupToggle(popupImg));
+popupCloseImg.addEventListener('click',  (evt) => popupToggle(popupImg));
 
 // Находим форму в DOM
 
@@ -87,7 +95,7 @@ const popupCloseByClickOnOverlay = (event) => {
 
 popupEdit.addEventListener('click', popupCloseByClickOnOverlay);
 popupAdd.addEventListener('click', popupCloseByClickOnOverlay);
-
+popupImg.addEventListener('click', popupCloseByClickOnOverlay);
 
 
 //NEW
