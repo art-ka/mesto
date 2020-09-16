@@ -8,12 +8,19 @@ const popupAdd = document.querySelector('.popup_type_add');
 
 const popupOpenImg = document.querySelector('.element__image');
 const popupCloseImg = document.querySelector('.popup__close_type_img');
-const popupImg = document.querySelector('.popup_type_img');
+const popupWithImage = document.querySelector('.popup_type_img');
 
 
-const popupToggle = function (popup) {
-        popup.classList.toggle('popup_opened');
+const popupToggle = function (popup, evt) {
+    const id = evt ? evt.target.getAttribute('id') : null;
+    if (id) { 
+        const popupImage = document.querySelector('.popup__image');
+        const popupTitle = document.querySelector('.popup__caption');
+        popupImage.src = initialCards[id].link;
+        popupTitle.innerHTML = initialCards[id].name;
     }
+    popup.classList.toggle('popup_opened');
+}
 
 // открытие окна ред
 popupOpenButton.addEventListener('click',  (evt) => popupToggle(popupEdit));
@@ -26,12 +33,8 @@ popupOpenAddButton.addEventListener('click',  (evt) => popupToggle(popupAdd));
 popupCloseAddButton.addEventListener('click',  (evt) => popupToggle(popupAdd));
 
 
-const pOpenImg = document.querySelector('.elements');
+popupCloseImg.addEventListener('click',  (evt) => popupToggle(popupWithImage));
 
-pOpenImg.addEventListener('click',  (evt) => popupToggle(popupImg));
-popupCloseImg.addEventListener('click',  (evt) => popupToggle(popupImg));
-
-// Находим форму в DOM
 
 let formElement = popupEdit.querySelector('.popup__form'); 
 let submitInput = formElement.querySelector('.popup__submit-button');
@@ -95,7 +98,7 @@ const popupCloseByClickOnOverlay = (event) => {
 
 popupEdit.addEventListener('click', popupCloseByClickOnOverlay);
 popupAdd.addEventListener('click', popupCloseByClickOnOverlay);
-popupImg.addEventListener('click', popupCloseByClickOnOverlay);
+popupWithImage.addEventListener('click', popupCloseByClickOnOverlay);
 
 
 //NEW
@@ -138,6 +141,12 @@ function renderItem(cardItem, index) {
 
     cardElement.querySelector('.element__image').src = cardItem.link;
 
+    cardElement.querySelector('.element__image').setAttribute("id", index);
+
+    cardElement.querySelector('.element__image').addEventListener('click',  (evt) => popupToggle(popupWithImage, evt));
+
+    cardElement.querySelector('.element__title').setAttribute("id", index);
+    
     const deleteButton = cardElement.querySelector(".element__delete-button");
 
     deleteButton.setAttribute("id", index);
@@ -147,7 +156,7 @@ function renderItem(cardItem, index) {
     const likeButton = cardElement.querySelector('.element__like-image');
     likeButton.setAttribute("id", index);
     if(cardItem.like) {
-        likeButton.classList.toggle('element__like-image-active')
+        likeButton.classList.toggle('element__like-image-active');
     }
 
     elementOnline.appendChild(cardElement);
@@ -162,7 +171,6 @@ function render() {
 	elementOnline.innerHTML = "";
     initialCards.forEach(renderItem);
     
-    //setListeners();
     const likeImage = document.querySelectorAll('.element__like-image');
 
     likeImage.forEach(item => {
@@ -186,23 +194,17 @@ const formAddButton = document.querySelector('.popup__submit-button');
 
 
 function addSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                        // Так мы можем определить свою логику отправки.
-                        // О том, как это делать, расскажем позже.
-                        
-    // Находим поля формы в DOM
+    evt.preventDefault(); 
+
     let titleInput = document.querySelector('.popup__field_text_title');
     let imageInput = document.querySelector('.popup__field_image_place');
 
-      // Получите значение полей из свойства value
     let title = titleInput.value;
     let image = imageInput.value; 
 
-    // Выберите элементы, куда должны быть вставлены значения полей
     let elementTitle = document.querySelector('.element__title');
     let elementImage = document.querySelector('.element__image');
 
-    // Вставьте новые значения с помощью textContent
     elementTitle.textContent = title;
     elementImage.src = image;
 
@@ -213,10 +215,6 @@ function addSubmitHandler (evt) {
     
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-
 const formAddElement = document.querySelector('.popup__form_add_js');
 
 formAddElement.addEventListener('submit', addSubmitHandler); 
-
