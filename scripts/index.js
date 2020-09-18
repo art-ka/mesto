@@ -1,6 +1,6 @@
-const popupOpenButton = document.querySelector('.profile__edit-button');
-const popupCloseButton = document.querySelector('.popup__close_type_editform');
-const popupEdit = document.querySelector('.popup_type_edit');
+const popupOpenButton = document.querySelector(".profile__edit-button");
+const popupCloseButton = document.querySelector(".popup__close_type_editform");
+const popupEdit = document.querySelector(".popup_type_edit");
 
 const popupOpenAddButton = document.querySelector('.profile__add-button');
 const popupCloseAddButton = document.querySelector('.popup__close_type_addform');
@@ -12,7 +12,7 @@ const popupWithImage = document.querySelector('.popup_type_img');
 
 const popupToggle = function (popup, evt) {
     const id = evt ? evt.target.getAttribute('id') : null;
-    if (id) { 
+    if (id) {
         const popupImage = document.querySelector('.popup__image');
         const popupTitle = document.querySelector('.popup__caption');
         popupImage.src = initialCards[id].link;
@@ -21,75 +21,51 @@ const popupToggle = function (popup, evt) {
     popup.classList.toggle('popup_opened');
 }
 
-// открытие окна ред
-popupOpenButton.addEventListener('click',  (evt) => popupToggle(popupEdit));
-// закрытие окна ред
-popupCloseButton.addEventListener('click',  (evt) => popupToggle(popupEdit));
+popupOpenButton.addEventListener('click', (evt) => popupToggle(popupEdit));
+popupCloseButton.addEventListener('click', (evt) => popupToggle(popupEdit));
 
-// открытие окна добавления
-popupOpenAddButton.addEventListener('click',  (evt) => popupToggle(popupAdd));
-// закрытие окна добавления
-popupCloseAddButton.addEventListener('click',  (evt) => popupToggle(popupAdd));
+popupOpenAddButton.addEventListener('click', (evt) => popupToggle(popupAdd));
+popupCloseAddButton.addEventListener('click', (evt) => popupToggle(popupAdd));
 
+popupCloseImg.addEventListener('click', (evt) => popupToggle(popupWithImage));
 
-popupCloseImg.addEventListener('click',  (evt) => popupToggle(popupWithImage));
+const formElement = popupEdit.querySelector('.popup__form');
 
+const title = document.querySelector('.profile__title');
+const subtitle = document.querySelector('.profile__subtitle');
 
-let formElement = popupEdit.querySelector('.popup__form'); 
-let submitInput = formElement.querySelector('.popup__submit-button');
+const nameInput = formElement.querySelector('.popup__field_text_name');
+const jobInput = formElement.querySelector('.popup__field_text_job');
 
-function getValue () {
+function fillForm() {
 
-    let title = document.querySelector('.profile__title');
-    let subtitle = document.querySelector('.profile__subtitle');
+    const nameProfile = title.innerHTML;
+    const jobProfile = subtitle.innerHTML;
 
-    let nameProfile = title.innerHTML;
-    let jobProfile = subtitle.innerHTML;
-
-    let nInput = formElement.querySelector('.popup__field_text_name');
-    let jInput = formElement.querySelector('.popup__field_text_job');
-
-    nInput.value = nameProfile;
-    jInput.value = jobProfile;
+    nameInput.value = nameProfile;
+    jobInput.value = jobProfile;
 }
 
-popupOpenButton.addEventListener('click', getValue);
+popupOpenButton.addEventListener('click', fillForm);
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
-function formSubmitHandler (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                        // Так мы можем определить свою логику отправки.
-                        // О том, как это делать, расскажем позже.
-                        
-    // Находим поля формы в DOM
-    let nameInput = formElement.querySelector('.popup__field_text_name');
-    let jobInput = formElement.querySelector('.popup__field_text_job');
+function formSubmitHandler(evt) {
+    evt.preventDefault();
 
-      // Получите значение полей из свойства value
-    let name = nameInput.value;
-    let job = jobInput.value; 
+    const name = nameInput.value;
+    const job = jobInput.value;
 
-    // Выберите элементы, куда должны быть вставлены значения полей
-    let profileTitle = document.querySelector('.profile__title');
-    let profileSubtitle = document.querySelector('.profile__subtitle');
-
-    // Вставьте новые значения с помощью textContent
-    profileTitle.textContent = name;
-    profileSubtitle.textContent = job;
+    title.textContent = name;
+    subtitle.textContent = job;
 
     popupToggle(popupEdit);
 }
 
-// Прикрепляем обработчик к форме:
-// он будет следить за событием “submit” - «отправка»
-
-formElement.addEventListener('submit', formSubmitHandler); 
+formElement.addEventListener('submit', formSubmitHandler);
 
 const popupCloseByClickOnOverlay = (event) => {
 
     if (event.target !== event.currentTarget) {
-    return;
+        return;
     }
 
     popupToggle(event.target);
@@ -126,7 +102,7 @@ const initialCards = [
     }
 ];
 
-const elementTemplate = document.querySelector('#elements').content;  
+const elementTemplate = document.querySelector('#elements').content;
 const elementOnline = document.querySelector('.element');
 
 function renderItem(cardItem, index) {
@@ -138,10 +114,10 @@ function renderItem(cardItem, index) {
 
     cardElement.querySelector('.element__image').setAttribute("id", index);
 
-    cardElement.querySelector('.element__image').addEventListener('click',  (evt) => popupToggle(popupWithImage, evt));
+    cardElement.querySelector('.element__image').addEventListener('click', (evt) => popupToggle(popupWithImage, evt));
 
     cardElement.querySelector('.element__title').setAttribute("id", index);
-    
+
     const deleteButton = cardElement.querySelector(".element__delete-button");
 
     deleteButton.setAttribute("id", index);
@@ -150,64 +126,56 @@ function renderItem(cardItem, index) {
 
     const likeButton = cardElement.querySelector('.element__like-image');
     likeButton.setAttribute("id", index);
-    if(cardItem.like) {
+    if (cardItem.like) {
         likeButton.classList.toggle('element__like-image-active');
     }
+
+    likeButton.addEventListener('click', event => {
+        const index = event.target.getAttribute('id');
+        initialCards[index].like = !initialCards[index].like;
+        event.target.classList.toggle('element__like-image-active');
+    });
 
     elementOnline.appendChild(cardElement);
 }
 
-
 function getIdFromEvent(event) {
-	return event.target.getAttribute("id");
+    return event.target.getAttribute("id");
 }
 
 function render() {
-	elementOnline.innerHTML = "";
+    elementOnline.innerHTML = "";
     initialCards.forEach(renderItem);
-    
-    const likeImage = document.querySelectorAll('.element__like-image');
-
-    likeImage.forEach(item => {
-        item.addEventListener('click', event => {
-            const index = item.getAttribute('id');
-            initialCards[index].like = !initialCards[index].like;
-            item.classList.toggle('element__like-image-active');
-        });
-    });
 }
 
 function handleDelete(event) {
     const index = getIdFromEvent(event);
-	initialCards.splice(index, 1);
-	render();
+    initialCards.splice(index, 1);
+    render();
 }
 
 render();
 
-const formAddButton = document.querySelector('.popup__submit-button');
+function addSubmitHandler(evt) {
+    evt.preventDefault();
 
+    const titleInput = document.querySelector('.popup__field_text_title');
+    const imageInput = document.querySelector('.popup__field_image_place');
 
-function addSubmitHandler (evt) {
-    evt.preventDefault(); 
+    const title = titleInput.value;
+    const image = imageInput.value;
 
-    let titleInput = document.querySelector('.popup__field_text_title');
-    let imageInput = document.querySelector('.popup__field_image_place');
-
-    let title = titleInput.value;
-    let image = imageInput.value; 
-
-    let elementTitle = document.querySelector('.element__title');
-    let elementImage = document.querySelector('.element__image');
+    const elementTitle = document.querySelector('.element__title');
+    const elementImage = document.querySelector('.element__image');
 
     elementTitle.textContent = title;
     elementImage.src = image;
 
-    initialCards.unshift({name: title, link: image});
+    initialCards.unshift({ name: title, link: image });
     render();
 
     popupToggle(popupAdd);
-    
+
 }
 
 const formAddElement = document.querySelector('.popup__form_add_js');
