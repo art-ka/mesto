@@ -1,6 +1,6 @@
-const popupOpenButton = document.querySelector(".profile__edit-button");
-const popupCloseButton = document.querySelector(".popup__close_type_editform");
-const popupEdit = document.querySelector(".popup_type_edit");
+const popupOpenButton = document.querySelector('.profile__edit-button');
+const popupCloseButton = document.querySelector('.popup__close_type_editform');
+const popupEdit = document.querySelector('.popup_type_edit');
 
 const popupOpenAddButton = document.querySelector('.profile__add-button');
 const popupCloseAddButton = document.querySelector('.popup__close_type_addform');
@@ -8,7 +8,6 @@ const popupAdd = document.querySelector('.popup_type_add');
 
 const popupCloseImg = document.querySelector('.popup__close_type_img');
 const popupWithImage = document.querySelector('.popup_type_img');
-
 
 const popupToggle = function (popup, evt) {
     const id = evt ? evt.target.getAttribute('id') : null;
