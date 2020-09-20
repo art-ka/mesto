@@ -9,11 +9,12 @@ const popupAdd = document.querySelector('.popup_type_add');
 const popupCloseImg = document.querySelector('.popup__close_type_img');
 const popupWithImage = document.querySelector('.popup_type_img');
 
+const popupImage = document.querySelector('.popup__image');
+const popupTitle = document.querySelector('.popup__caption');
+
 const popupToggle = function (popup, evt) {
     const id = evt ? evt.target.getAttribute('id') : null;
     if (id) {
-        const popupImage = document.querySelector('.popup__image');
-        const popupTitle = document.querySelector('.popup__caption');
         popupImage.src = initialCards[id].link;
         popupTitle.innerHTML = initialCards[id].name;
     }
@@ -38,8 +39,8 @@ const jobInput = formElement.querySelector('.popup__field_text_job');
 
 function fillForm() {
 
-    const nameProfile = title.innerHTML;
-    const jobProfile = subtitle.innerHTML;
+    const nameProfile = title.textContent;
+    const jobProfile = subtitle.textContent;
 
     nameInput.value = nameProfile;
     jobInput.value = jobProfile;
@@ -155,17 +156,17 @@ function handleDelete(event) {
 
 render();
 
+const titleInput = document.querySelector('.popup__field_text_title');
+const imageInput = document.querySelector('.popup__field_image_place');
+
+const elementTitle = document.querySelector('.element__title');
+const elementImage = document.querySelector('.element__image');
+
 function addSubmitHandler(evt) {
     evt.preventDefault();
 
-    const titleInput = document.querySelector('.popup__field_text_title');
-    const imageInput = document.querySelector('.popup__field_image_place');
-
     const title = titleInput.value;
     const image = imageInput.value;
-
-    const elementTitle = document.querySelector('.element__title');
-    const elementImage = document.querySelector('.element__image');
 
     elementTitle.textContent = title;
     elementImage.src = image;
