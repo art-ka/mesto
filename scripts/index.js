@@ -75,6 +75,16 @@ popupEdit.addEventListener('click', popupCloseByClickOnOverlay);
 popupAdd.addEventListener('click', popupCloseByClickOnOverlay);
 popupWithImage.addEventListener('click', popupCloseByClickOnOverlay);
 
+function popupCloseByEsc(evt) {
+    if(evt.key === 'Escape') {
+        popupWithImage.classList.remove('popup_opened');
+        popupAdd.classList.remove('popup_opened');
+        popupEdit.classList.remove('popup_opened');
+    }
+    };
+
+document.addEventListener('keydown', popupCloseByEsc);
+
 const initialCards = [
     {
         name: 'Архыз',
