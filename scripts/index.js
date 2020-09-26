@@ -34,8 +34,8 @@ const formElement = popupEdit.querySelector('.popup__form');
 const title = document.querySelector('.profile__title');
 const subtitle = document.querySelector('.profile__subtitle');
 
-const nameInput = formElement.querySelector('.popup__field_text_name');
-const jobInput = formElement.querySelector('.popup__field_text_job');
+const nameInput = formElement.querySelector('.popup__field_input_first');
+const jobInput = formElement.querySelector('.popup__field_input_second');
 
 function fillForm() {
 
