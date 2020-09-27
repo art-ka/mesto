@@ -6,10 +6,10 @@
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 33;
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 33;
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.5s, opacity 0.5s linear;

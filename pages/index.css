@@ -33,10 +33,12 @@
 @import url(../blocks/popup/__close/popup__close.css);
 @import url(../blocks/popup/__close-image/popup__close-image.css);
 @import url(../blocks/popup/__field/popup__field.css);
-@import url(../blocks/popup/__field/_input/popup__field_input_first.css);
-@import url(../blocks/popup/__field/_input/popup__field_input_second.css);
+@import url(../blocks/popup/__field/_input/popup__field_input_name.css);
+@import url(../blocks/popup/__field/_input/popup__field_input_job.css);
+@import url(../blocks/popup/__field/_input/popup__field_input_title.css);
+@import url(../blocks/popup/__field/_input/popup__field_input_url.css);
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);
-@import url(../blocks/popup/__submit-button/__submit-button-disabled.css);
+@import url(../blocks/popup/__submit-button/popup__submit-button-disabled.css);
 @import url(../blocks/popup/__field/popup__field-error.css);
 @import url(../blocks/popup/__field/popup__field-error-active.css);
 @import url(../blocks/popup/__container/popup__container-img.css);
