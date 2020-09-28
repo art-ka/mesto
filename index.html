@@ -2,47 +2,46 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Сервис Mesto с фотографиями из путешествий</title>
     <meta name="description"
-        content="Интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки.">
-    <link href="./pages/index.css" rel="stylesheet">
+        content="Интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки." />
+    <link href="./pages/index.css" rel="stylesheet" />
 </head>
 
 <body>
     <div class="page">
         <div class="page__content">
             <header class="header">
-                <img class="header__logo logo" src="./images/mesto-logo.svg" alt="Логотип Mesto">
+                <img class="header__logo logo" src="./images/mesto-logo.svg" alt="Логотип Mesto" />
             </header>
             <div class="main">
                 <main class="content">
                     <section class="profile">
-                        <img src="./images/image.jpg" alt="Аватарка пользователя" class="profile__avatar">
+                        <img src="./images/image.jpg" alt="Аватарка пользователя" class="profile__avatar" />
                         <div class="profile__info">
                             <h1 class="profile__title">Жак-Ив Кусто</h1>
                             <button class="profile__edit-button" type="button">
-                                <img class="profile__edit-button-image" src="./images/edit.svg" alt="Редактировать">
+                                <img class="profile__edit-button-image" src="./images/edit.svg" alt="Редактировать" />
                             </button>
                             <p class="profile__subtitle">Исследователь океана</p>
                         </div>
                         <button class="profile__add-button" type="button">
-                            <img class="profile__add-button-image" src="./images/add-buton.svg" alt="Добавить фото">
+                            <img class="profile__add-button-image" src="./images/add-buton.svg" alt="Добавить фото" />
                         </button>
                     </section>
 
                     <section class="elements">
-                        <ul class="element">
-                        </ul>
+                        <ul class="element"></ul>
                     </section>
                     <template id="elements">
                         <li>
-                            <img class="element__image" src="">
+                            <img class="element__image" src="" />
                             <div class="element__info">
                                 <h2 class="element__title"></h2>
                                 <button class="element__like-button" type="button">
-                                    <img class="element__like-image" src="./images/heart.svg" alt="Поставить лайк">
+                                    <img class="element__like-image" src="./images/heart.svg" alt="Поставить лайк" />
                                 </button>
                                 <button class="element__delete-button" type="button"></button>
                             </div>
@@ -60,16 +59,20 @@
     <section class="popup popup_type_edit">
         <div class="popup__container">
             <button class="popup__close popup__close_type_editform" type="button">
-                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть форму редактирования">
+                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть форму редактирования" />
             </button>
             <div class="popup__content">
                 <h3 class="popup__title">Редактировать профиль</h3>
                 <form class="popup__form" name="edit-form">
-                    <input type="text" id="name-input" value="" name="fullname" class="popup__field popup__field_input_name" required minlength="2" maxlength="40">
+                    <input type="text" id="name-input" value="" name="fullname"
+                        class="popup__field popup__field_input_name" required minlength="2" maxlength="40" />
                     <span id="name-input-error" class="popup__field-error"></span>
-                    <input type="text" id="job-input" value="" name="job" class="popup__field popup__field_input_job" required minlength="2" maxlength="200">
+                    <input type="text" id="job-input" value="" name="job" class="popup__field popup__field_input_job"
+                        required minlength="2" maxlength="200" />
                     <span id="job-input-error" class="popup__field-error"></span>
-                    <button class="popup__submit-button" type="submit" value="Сохранить">Сохранить</button>
+                    <button class="popup__submit-button" type="submit" value="Сохранить">
+                        Сохранить
+                    </button>
                 </form>
             </div>
         </div>
@@ -78,18 +81,20 @@
     <section class="popup popup_type_add">
         <div class="popup__container">
             <button class="popup__close popup__close_type_addform" type="button">
-                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть окно добавления">
+                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть окно добавления" />
             </button>
             <div class="popup__content">
                 <h3 class="popup__title">Новое место</h3>
-                <form class="popup__form popup__form_add_js" name="edit-form">
+                <form class="popup__form popup__form_add_js" name="add-form">
                     <input type="text" id="title-input" placeholder="Название" value="" name="title"
-                        class="popup__field popup__field_input_title" required minlength="2" maxlength="30">
-                        <span id="title-input-error" class="popup__field-error"></span>
+                        class="popup__field popup__field_input_title" required minlength="2" maxlength="30" />
+                    <span id="title-input-error" class="popup__field-error"></span>
                     <input type="url" id="url-input" placeholder="Ссылка на картинку" value="" name="picture"
-                        class="popup__field popup__field_input_url" required>
-                        <span id="url-input-error" class="popup__field-error"></span>
-                    <button class="popup__submit-button" type="submit" value="Создать">Создать</button>
+                        class="popup__field popup__field_input_url" required />
+                    <span id="url-input-error" class="popup__field-error"></span>
+                    <button class="popup__submit-button" type="submit" value="Создать">
+                        Создать
+                    </button>
                 </form>
             </div>
         </div>
@@ -98,9 +103,10 @@
     <section class="popup popup_type_img">
         <div class="popup__container-img">
             <button class="popup__close popup__close_type_img" type="button">
-                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть окно просмотра изображения">
+                <img class="popup__close-image" src="./images/Close Icon.svg"
+                    alt="Закрыть окно просмотра изображения" />
             </button>
-            <img class="popup__image" src="">
+            <img class="popup__image" src="" />
             <h3 class="popup__caption"></h3>
         </div>
     </section>

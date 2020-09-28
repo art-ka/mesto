@@ -12,7 +12,7 @@ const popupWithImage = document.querySelector('.popup_type_img');
 const popupImage = document.querySelector('.popup__image');
 const popupTitle = document.querySelector('.popup__caption');
 
-function popupToggle (popup, evt) {
+function popupToggle(popup, evt) {
     const id = evt ? evt.target.getAttribute('id') : null;
 
     if (id) {
@@ -20,9 +20,6 @@ function popupToggle (popup, evt) {
         popupTitle.innerHTML = initialCards[id].name;
     }
     popup.classList.toggle('popup_opened');
-
-    console.log(popup.classList);
-    console.log(popup.classList.contains('popup_opened'));
 
     if (popup.classList.contains('popup_opened')) {
         document.addEventListener('keydown', popupCloseByEsc);
@@ -33,7 +30,6 @@ function popupToggle (popup, evt) {
 
 function popupCloseByEsc(evt) {
     if (evt.key === 'Escape') {
-        console.log(evt.target);
         popupWithImage.classList.remove('popup_opened');
         popupAdd.classList.remove('popup_opened');
         popupEdit.classList.remove('popup_opened');
