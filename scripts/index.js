@@ -30,10 +30,8 @@ function popupToggle(popup, evt) {
 
 function popupCloseByEsc(evt) {
     if (evt.key === 'Escape') {
-        popupWithImage.classList.remove('popup_opened');
-        popupAdd.classList.remove('popup_opened');
-        popupEdit.classList.remove('popup_opened');
-        document.removeEventListener('keydown', popupCloseByEsc);
+        const popupOpen = document.querySelector('.popup_opened');
+        popupToggle(popupOpen);
     }
 }
 
