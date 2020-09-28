@@ -2,8 +2,6 @@
 const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
-    //console.log(inputElement.id);
-
     errorElement.classList.add('popup__field-error-active');
     errorElement.textContent = errorMessage;
 };
@@ -15,13 +13,8 @@ const hideInputError = (formElement, inputElement) => {
 };
 
 const checkInputValidity = (formElement, inputElement) => {
-    //console.log(inputElement.validity.valid);
-
     if (!inputElement.validity.valid) {
         showInputError(formElement, inputElement, inputElement.validationMessage);
-
-        //console.log(inputElement.validationMessage);
-
     } else {
         hideInputError(formElement, inputElement);
     }
@@ -50,7 +43,6 @@ const setEventListeners = (formElement) => {
             checkInputValidity(formElement, inputElement);
             toggleButtonState(inputList, buttonElement);
         });
-
         if (formElement.name === "add-form") {
             toggleButtonState(inputList, buttonElement);
         }
