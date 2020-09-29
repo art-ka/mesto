@@ -43,9 +43,6 @@ const setEventListeners = (formElement) => {
             checkInputValidity(formElement, inputElement);
             toggleButtonState(inputList, buttonElement);
         });
-        if (formElement.name === "add-form") {
-            toggleButtonState(inputList, buttonElement);
-        }
     });
 }
 

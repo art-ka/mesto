@@ -12,13 +12,10 @@ const popupWithImage = document.querySelector('.popup_type_img');
 const popupImage = document.querySelector('.popup__image');
 const popupTitle = document.querySelector('.popup__caption');
 
-function popupToggle(popup, evt) {
-    const id = evt ? evt.target.getAttribute('id') : null;
+const titleInput = document.querySelector('.popup__field_input_title');
+const imageInput = document.querySelector('.popup__field_input_url');
 
-    if (id) {
-        popupImage.src = initialCards[id].link;
-        popupTitle.innerHTML = initialCards[id].name;
-    }
+function popupToggle(popup) {
     popup.classList.toggle('popup_opened');
 
     if (popup.classList.contains('popup_opened')) {
@@ -38,18 +35,29 @@ function popupCloseByEsc(evt) {
 popupOpenButton.addEventListener('click', (evt) => popupToggle(popupEdit));
 popupCloseButton.addEventListener('click', (evt) => popupToggle(popupEdit));
 
-popupOpenAddButton.addEventListener('click', (evt) => popupToggle(popupAdd));
+popupOpenAddButton.addEventListener('click', (evt) => {
+    popupToggle(popupAdd);
+
+    titleInput.value = "";
+    imageInput.value = "";
+
+    const inputList = Array.from(popupAdd.querySelectorAll('.popup__field'));
+    const buttonElement = popupAdd.querySelector('.popup__submit-button');
+
+    toggleButtonState(inputList, buttonElement);
+});
+
 popupCloseAddButton.addEventListener('click', (evt) => popupToggle(popupAdd));
 
 popupCloseImg.addEventListener('click', (evt) => popupToggle(popupWithImage));
 
-const formElement = popupEdit.querySelector('.popup__form');
+const formEditProfile = popupEdit.querySelector('.popup__form');
 
 const title = document.querySelector('.profile__title');
 const subtitle = document.querySelector('.profile__subtitle');
 
-const nameInput = formElement.querySelector('.popup__field_input_name');
-const jobInput = formElement.querySelector('.popup__field_input_job');
+const nameInput = formEditProfile.querySelector('.popup__field_input_name');
+const jobInput = formEditProfile.querySelector('.popup__field_input_job');
 
 function fillForm() {
 
@@ -62,7 +70,7 @@ function fillForm() {
 
 popupOpenButton.addEventListener('click', fillForm);
 
-function formSubmitHandler(evt) {
+function formEditSubmitHandler(evt) {
     evt.preventDefault();
 
     const name = nameInput.value;
@@ -74,7 +82,7 @@ function formSubmitHandler(evt) {
     popupToggle(popupEdit);
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
+formEditProfile.addEventListener('submit', formEditSubmitHandler);
 
 const popupCloseByClickOnOverlay = (event) => {
 
@@ -121,14 +129,25 @@ const elementOnline = document.querySelector('.element');
 
 function renderItem(cardItem, index) {
     const cardElement = elementTemplate.cloneNode(true);
+    const cardImg = cardElement.querySelector('.element__image');
 
     cardElement.querySelector('.element__title').innerText = cardItem.name;
 
-    cardElement.querySelector('.element__image').src = cardItem.link;
+    cardImg.src = cardItem.link;
 
-    cardElement.querySelector('.element__image').setAttribute("id", index);
+    cardImg.setAttribute("id", index);
 
-    cardElement.querySelector('.element__image').addEventListener('click', (evt) => popupToggle(popupWithImage, evt));
+    cardImg.addEventListener('click', (evt) => {
+        const id = evt ? evt.target.getAttribute('id') : null; 
+
+        if (id) {
+            popupImage.src = initialCards[id].link;
+            popupTitle.innerHTML = initialCards[id].name;
+        }
+
+        popupToggle(popupWithImage);
+    
+    });
 
     cardElement.querySelector('.element__title').setAttribute("id", index);
 
@@ -150,7 +169,7 @@ function renderItem(cardItem, index) {
         event.target.classList.toggle('element__like-image-active');
     });
 
-    elementOnline.appendChild(cardElement);
+    elementOnline.prepend(cardElement);
 }
 
 function getIdFromEvent(event) {
@@ -169,9 +188,6 @@ function handleDelete(event) {
 }
 
 render();
-
-const titleInput = document.querySelector('.popup__field_input_title');
-const imageInput = document.querySelector('.popup__field_input_url');
 
 const elementTitle = document.querySelector('.element__title');
 const elementImage = document.querySelector('.element__image');

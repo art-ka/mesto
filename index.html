@@ -35,18 +35,7 @@
                     <section class="elements">
                         <ul class="element"></ul>
                     </section>
-                    <template id="elements">
-                        <li>
-                            <img class="element__image" src="" />
-                            <div class="element__info">
-                                <h2 class="element__title"></h2>
-                                <button class="element__like-button" type="button">
-                                    <img class="element__like-image" src="./images/heart.svg" alt="Поставить лайк" />
-                                </button>
-                                <button class="element__delete-button" type="button"></button>
-                            </div>
-                        </li>
-                    </template>
+                    
                 </main>
 
                 <footer class="footer">
@@ -111,7 +100,21 @@
         </div>
     </section>
 
+    <template id="elements">
+        <li>
+            <img class="element__image" src="" />
+            <div class="element__info">
+                <h2 class="element__title"></h2>
+                <button class="element__like-button" type="button">
+                    <img class="element__like-image" src="./images/heart.svg" alt="Поставить лайк" />
+                </button>
+                <button class="element__delete-button" type="button"></button>
+            </div>
+        </li>
+    </template>
+
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/cards.js" defer></script>
     <script src="./scripts/validate.js" defer></script>
 </body>
 

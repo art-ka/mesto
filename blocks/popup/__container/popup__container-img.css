@@ -1,16 +1,15 @@
 .popup__container-img {
     position: relative;
-    margin: auto;
-    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: -50px;
     display: block;
     max-width: 816px;
 }
 
 @media screen and (max-width: 400px) and (min-width: 320px) {
     .popup__container-img {
-        margin-top: 136px;
+        margin-top: -200px;
     }
 }
-
-
 

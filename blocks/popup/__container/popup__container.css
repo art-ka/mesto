@@ -8,13 +8,13 @@
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    top: 185px;
+    top: -60px;
 }
 
 @media screen and (max-width: 400px) and (min-width: 320px) {
     .popup__container {
         max-width: 75%;
-        top: 155px;
+        top: -75px;
         padding: 30px 20px 30px;
     }
 }
@@ -22,14 +22,14 @@
 @media screen and (max-width: 532px) and (min-width: 400px) {
     .popup__container {
         max-width: 75%;
-        top: 175px;
+        top: -50px;
     }
 }
 
 @media screen and (max-width: 655px) and (min-width: 532px) {
     .popup__container {
         max-width: 430px;
-        top: 180px;
+        top: -60px;
     }
 }
 
