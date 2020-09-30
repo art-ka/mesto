@@ -108,37 +108,24 @@ function renderItem(cardItem, index) {
 
     cardImg.src = cardItem.link;
 
-    cardImg.setAttribute("id", index);
-
     cardImg.addEventListener('click', (evt) => {
-        const id = evt ? evt.target.getAttribute('id') : null; 
 
-        if (id) {
-            popupImage.src = initialCards[id].link;
-            popupTitle.innerHTML = initialCards[id].name;
-        }
+            popupImage.src = cardItem.link;
+            popupTitle.innerHTML = cardItem.name;
 
         popupToggle(popupWithImage);
-    
     });
-
-    cardElement.querySelector('.element__title').setAttribute("id", index);
 
     const deleteButton = cardElement.querySelector(".element__delete-button");
 
-    deleteButton.setAttribute("id", index);
-
-    deleteButton.addEventListener('click', handleDelete);
+    deleteButton.addEventListener('click', function(evt) { 
+        const card = evt.target.closest('.element__cards');
+        card.remove();
+    });
 
     const likeButton = cardElement.querySelector('.element__like-image');
-    likeButton.setAttribute("id", index);
-    if (cardItem.like) {
-        likeButton.classList.toggle('element__like-image-active');
-    }
 
     likeButton.addEventListener('click', event => {
-        const index = event.target.getAttribute('id');
-        initialCards[index].like = !initialCards[index].like;
         event.target.classList.toggle('element__like-image-active');
     });
 
@@ -154,31 +141,21 @@ function render() {
     initialCards.forEach(renderItem);
 }
 
-function handleDelete(event) {
-    const index = getIdFromEvent(event);
-    initialCards.splice(index, 1);
-    render();
-}
-
 render();
-
-const elementTitle = document.querySelector('.element__title');
-const elementImage = document.querySelector('.element__image');
 
 function addSubmitHandler(evt) {
     evt.preventDefault();
 
-    const title = titleInput.value;
-    const image = imageInput.value;
+    const cardItem = {
+        name: titleInput.value,
+        link: imageInput.value
+    }
 
-    elementTitle.textContent = title;
-    elementImage.src = image;
-
-    initialCards.unshift({ name: title, link: image });
-    render();
+    console.log(cardItem);
 
     popupToggle(popupAdd);
 
+    renderItem(cardItem);
 }
 
 const formAddElement = document.querySelector('.popup__form_add_js');
