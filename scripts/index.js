@@ -44,7 +44,7 @@ popupOpenAddButton.addEventListener('click', (evt) => {
     const inputList = Array.from(popupAdd.querySelectorAll('.popup__field'));
     const buttonElement = popupAdd.querySelector('.popup__submit-button');
 
-    toggleButtonState(inputList, buttonElement);
+    toggleButtonState({ inactiveButtonClass: 'popup__submit-button-disabled' }, inputList, buttonElement);
 });
 
 popupCloseAddButton.addEventListener('click', (evt) => popupToggle(popupAdd));
@@ -110,15 +110,15 @@ function renderItem(cardItem, index) {
 
     cardImg.addEventListener('click', (evt) => {
 
-            popupImage.src = cardItem.link;
-            popupTitle.innerHTML = cardItem.name;
+        popupImage.src = cardItem.link;
+        popupTitle.innerHTML = cardItem.name;
 
         popupToggle(popupWithImage);
     });
 
     const deleteButton = cardElement.querySelector(".element__delete-button");
 
-    deleteButton.addEventListener('click', function(evt) { 
+    deleteButton.addEventListener('click', function (evt) {
         const card = evt.target.closest('.element__cards');
         card.remove();
     });
@@ -150,8 +150,6 @@ function addSubmitHandler(evt) {
         name: titleInput.value,
         link: imageInput.value
     }
-
-    console.log(cardItem);
 
     popupToggle(popupAdd);
 
