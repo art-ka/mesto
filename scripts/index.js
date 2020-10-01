@@ -100,13 +100,14 @@ popupWithImage.addEventListener('click', popupCloseByClickOnOverlay);
 const elementTemplate = document.querySelector('#elements').content;
 const elementOnline = document.querySelector('.element');
 
-function renderItem(cardItem, index) {
+function renderItem(cardItem) {
     const cardElement = elementTemplate.cloneNode(true);
     const cardImg = cardElement.querySelector('.element__image');
 
     cardElement.querySelector('.element__title').innerText = cardItem.name;
 
     cardImg.src = cardItem.link;
+    cardImg.alt = cardItem.name;
 
     cardImg.addEventListener('click', (evt) => {
 
