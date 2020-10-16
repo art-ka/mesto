@@ -1,3 +1,13 @@
+import { Card, initialCards } from './Cards.js';
+
+
+initialCards.forEach((item) => {
+    const card = new Card(item.name, item.link, '#elements');
+    const cardElement = card.generateCard();
+
+    document.querySelector('.element').append(cardElement);
+});
+
 const popupOpenButton = document.querySelector('.profile__edit-button');
 const popupCloseButton = document.querySelector('.popup__close_type_editform');
 const popupEdit = document.querySelector('.popup_type_edit');
@@ -97,6 +107,16 @@ popupEdit.addEventListener('click', popupCloseByClickOnOverlay);
 popupAdd.addEventListener('click', popupCloseByClickOnOverlay);
 popupWithImage.addEventListener('click', popupCloseByClickOnOverlay);
 
+
+//new
+
+
+
+
+
+//new
+
+/*
 const elementTemplate = document.querySelector('#elements').content;
 const elementOnline = document.querySelector('.element');
 
@@ -133,6 +153,10 @@ function renderItem(cardItem) {
     elementOnline.prepend(cardElement);
 }
 
+
+*/
+
+/*
 function getIdFromEvent(event) {
     return event.target.getAttribute("id");
 }
@@ -142,7 +166,7 @@ function render() {
     initialCards.forEach(renderItem);
 }
 
-render();
+render(); */
 
 function addSubmitHandler(evt) {
     evt.preventDefault();

@@ -46,6 +46,14 @@ const setEventListeners = (params, formElement) => {
     });
 }
 
+//new 
+//class enableValidation {}
+
+
+
+
+//new
+
 const enableValidation = (params) => {
     const formList = Array.from(document.querySelectorAll(params.formSelector));
     formList.forEach((formElement) => {
