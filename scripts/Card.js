@@ -1,4 +1,4 @@
-import { popupToggle } from './popup.js';
+import { popupToggle } from './utils.js';
 
 export class Card {
     constructor(name, link, popup, popupImage, popupTitle, templateId) {
@@ -24,6 +24,7 @@ export class Card {
         this._element = this._getTemplate();
         this._image = this._element.querySelector('.element__image');
         this._image.src = this._link;
+        this._image.alt = this._name;
         this._element.querySelector('.element__title').textContent = this._name;
 
         this._setEventListeners();
