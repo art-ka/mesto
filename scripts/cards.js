@@ -1,3 +1,5 @@
+import { popupToggle, popupCloseByEsc } from './popup.js';
+
 export const initialCards = [
     {
         name: 'Архыз',
@@ -45,13 +47,29 @@ export class Card {
     generateCard() {
         this._element = this._getTemplate();
         
-        //this._setEventListeners();
-    
+        this._setEventListeners();
+        
         this._element.querySelector('.element__image').src = this._link;
         this._element.querySelector('.element__title').textContent = this._name;
         
         return this._element;
     }
+    _handleDeleteCard() {
+        this._element.remove();
+    }
+    _setEventListeners() {
+        this._element
+            .querySelector('.element__delete-button')
+            .addEventListener('click', () => {
+                this._handleDeleteCard();
+            });
+
+        this._element
+            .querySelector('.element__like-image')
+            .addEventListener('click', event => {
+                event.target.classList.toggle('element__like-image-active');
+            });
+
 
 }
-
+}

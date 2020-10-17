@@ -1,12 +1,5 @@
 import { Card, initialCards } from './Cards.js';
-
-
-initialCards.forEach((item) => {
-    const card = new Card(item.name, item.link, '#elements');
-    const cardElement = card.generateCard();
-
-    document.querySelector('.element').append(cardElement);
-});
+import { popupToggle, popupCloseByEsc } from './popup.js';
 
 const popupOpenButton = document.querySelector('.profile__edit-button');
 const popupCloseButton = document.querySelector('.popup__close_type_editform');
@@ -25,22 +18,28 @@ const popupTitle = document.querySelector('.popup__caption');
 const titleInput = document.querySelector('.popup__field_input_title');
 const imageInput = document.querySelector('.popup__field_input_url');
 
-function popupToggle(popup) {
-    popup.classList.toggle('popup_opened');
 
-    if (popup.classList.contains('popup_opened')) {
-        document.addEventListener('keydown', popupCloseByEsc);
-    } else {
-        document.removeEventListener('keydown', popupCloseByEsc);
-    }
+initialCards.forEach((item) => {
+    const card = new Card(item.name, item.link, '#elements');
+    const cardElement = card.generateCard();
+
+    document.querySelector('.element').append(cardElement);
+});
+
+const addCard = (event) => {
+    event.preventDefault();
+    const card = new Card(titleInput.value, imageInput.value, '#elements');
+    const cardElement = card.generateCard();
+
+    popupToggle(popupAdd);
+
+    document.querySelector('.element').prepend(cardElement);
 }
 
-function popupCloseByEsc(evt) {
-    if (evt.key === 'Escape') {
-        const popupOpen = document.querySelector('.popup_opened');
-        popupToggle(popupOpen);
-    }
-}
+const formAddElement = document.querySelector('.popup__form_add_js');
+
+formAddElement.addEventListener('submit', addCard);
+
 
 popupOpenButton.addEventListener('click', (evt) => popupToggle(popupEdit));
 popupCloseButton.addEventListener('click', (evt) => popupToggle(popupEdit));
@@ -108,13 +107,7 @@ popupAdd.addEventListener('click', popupCloseByClickOnOverlay);
 popupWithImage.addEventListener('click', popupCloseByClickOnOverlay);
 
 
-//new
 
-
-
-
-
-//new
 
 /*
 const elementTemplate = document.querySelector('#elements').content;
@@ -168,6 +161,8 @@ function render() {
 
 render(); */
 
+
+/*
 function addSubmitHandler(evt) {
     evt.preventDefault();
 
@@ -183,4 +178,4 @@ function addSubmitHandler(evt) {
 
 const formAddElement = document.querySelector('.popup__form_add_js');
 
-formAddElement.addEventListener('submit', addSubmitHandler); 
+formAddElement.addEventListener('submit', addSubmitHandler); */
