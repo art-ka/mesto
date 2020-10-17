@@ -1,5 +1,6 @@
-import { Card, initialCards } from './Cards.js';
-import { popupToggle, popupCloseByEsc } from './popup.js';
+import { Card } from './Cards.js';
+import { initialCards } from './initialCards.js';
+import { popupToggle } from './popup.js';
 
 const popupOpenButton = document.querySelector('.profile__edit-button');
 const popupCloseButton = document.querySelector('.popup__close_type_editform');
@@ -20,7 +21,7 @@ const imageInput = document.querySelector('.popup__field_input_url');
 
 
 initialCards.forEach((item) => {
-    const card = new Card(item.name, item.link, '#elements');
+    const card = new Card(item.name, item.link, popupWithImage, popupImage, popupTitle, '#elements');
     const cardElement = card.generateCard();
 
     document.querySelector('.element').append(cardElement);
@@ -53,7 +54,7 @@ popupOpenAddButton.addEventListener('click', (evt) => {
     const inputList = Array.from(popupAdd.querySelectorAll('.popup__field'));
     const buttonElement = popupAdd.querySelector('.popup__submit-button');
 
-    toggleButtonState({ inactiveButtonClass: 'popup__submit-button-disabled' }, inputList, buttonElement);
+    //toggleButtonState({ inactiveButtonClass: 'popup__submit-button-disabled' }, inputList, buttonElement);
 });
 
 popupCloseAddButton.addEventListener('click', (evt) => popupToggle(popupAdd));
