@@ -1,6 +1,8 @@
 import { Card } from './Cards.js';
 import { initialCards } from './initialCards.js';
 import { popupToggle } from './popup.js';
+import { FormValidator } from './FormValidator.js';
+import { params } from './config.js';
 
 const popupOpenButton = document.querySelector('.profile__edit-button');
 const popupCloseButton = document.querySelector('.popup__close_type_editform');
@@ -29,7 +31,7 @@ initialCards.forEach((item) => {
 
 const addCard = (event) => {
     event.preventDefault();
-    const card = new Card(titleInput.value, imageInput.value, '#elements');
+    const card = new Card(titleInput.value, imageInput.value, popupWithImage, popupImage, popupTitle, '#elements');
     const cardElement = card.generateCard();
 
     popupToggle(popupAdd);
@@ -38,12 +40,16 @@ const addCard = (event) => {
 }
 
 const formAddElement = document.querySelector('.popup__form_add_js');
-
 formAddElement.addEventListener('submit', addCard);
-
 
 popupOpenButton.addEventListener('click', (evt) => popupToggle(popupEdit));
 popupCloseButton.addEventListener('click', (evt) => popupToggle(popupEdit));
+
+const formAddValidator = new FormValidator(params.formAdd, params);
+    formAddValidator.enableValidation();
+
+const formEditValidator = new FormValidator(params.formEdit, params);
+    formEditValidator.enableValidation();
 
 popupOpenAddButton.addEventListener('click', (evt) => {
     popupToggle(popupAdd);
@@ -54,7 +60,7 @@ popupOpenAddButton.addEventListener('click', (evt) => {
     const inputList = Array.from(popupAdd.querySelectorAll('.popup__field'));
     const buttonElement = popupAdd.querySelector('.popup__submit-button');
 
-    //toggleButtonState({ inactiveButtonClass: 'popup__submit-button-disabled' }, inputList, buttonElement);
+    formAddValidator._toggleButtonState(inputList, buttonElement);
 });
 
 popupCloseAddButton.addEventListener('click', (evt) => popupToggle(popupAdd));
@@ -106,77 +112,3 @@ const popupCloseByClickOnOverlay = (event) => {
 popupEdit.addEventListener('click', popupCloseByClickOnOverlay);
 popupAdd.addEventListener('click', popupCloseByClickOnOverlay);
 popupWithImage.addEventListener('click', popupCloseByClickOnOverlay);
-
-
-
-
-/*
-const elementTemplate = document.querySelector('#elements').content;
-const elementOnline = document.querySelector('.element');
-
-function renderItem(cardItem) {
-    const cardElement = elementTemplate.cloneNode(true);
-    const cardImg = cardElement.querySelector('.element__image');
-
-    cardElement.querySelector('.element__title').innerText = cardItem.name;
-
-    cardImg.src = cardItem.link;
-    cardImg.alt = cardItem.name;
-
-    cardImg.addEventListener('click', (evt) => {
-
-        popupImage.src = cardItem.link;
-        popupTitle.innerHTML = cardItem.name;
-
-        popupToggle(popupWithImage);
-    });
-
-    const deleteButton = cardElement.querySelector(".element__delete-button");
-
-    deleteButton.addEventListener('click', function (evt) {
-        const card = evt.target.closest('.element__cards');
-        card.remove();
-    });
-
-    const likeButton = cardElement.querySelector('.element__like-image');
-
-    likeButton.addEventListener('click', event => {
-        event.target.classList.toggle('element__like-image-active');
-    });
-
-    elementOnline.prepend(cardElement);
-}
-
-
-*/
-
-/*
-function getIdFromEvent(event) {
-    return event.target.getAttribute("id");
-}
-
-function render() {
-    elementOnline.innerHTML = "";
-    initialCards.forEach(renderItem);
-}
-
-render(); */
-
-
-/*
-function addSubmitHandler(evt) {
-    evt.preventDefault();
-
-    const cardItem = {
-        name: titleInput.value,
-        link: imageInput.value
-    }
-
-    popupToggle(popupAdd);
-
-    renderItem(cardItem);
-}
-
-const formAddElement = document.querySelector('.popup__form_add_js');
-
-formAddElement.addEventListener('submit', addSubmitHandler); */
