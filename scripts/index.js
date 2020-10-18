@@ -37,7 +37,7 @@ const createCard = (title, link) => {
 }
 
 initialCards.forEach((item) => {
-    const cardElement = createCard(item.title, item.link);
+    const cardElement = createCard(item.name, item.link);
     elementList.append(cardElement);
 });
 
