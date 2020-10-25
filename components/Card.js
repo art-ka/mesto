@@ -1,4 +1,4 @@
-import { popupToggle } from './utils.js';
+import { popupToggle } from '../utils/utils.js';
 
 export class Card {
     constructor(name, link, popup, popupImage, popupTitle, templateId) {

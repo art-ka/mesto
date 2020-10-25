@@ -1,7 +1,7 @@
-import { Card } from './Card.js';
-import { initialCards, params } from './constant.js';
-import { popupToggle } from './utils.js';
-import { FormValidator } from './FormValidator.js';
+import { Card } from '../components/Card.js';
+import { initialCards, params } from '../utils/constant.js';
+import { popupToggle } from '../utils/utils.js';
+import { FormValidator } from '../components/FormValidator.js';
 
 const popupOpenButton = document.querySelector('.profile__edit-button');
 const popupCloseButton = document.querySelector('.popup__close_type_editform');
