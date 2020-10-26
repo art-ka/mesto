@@ -1,3 +1,4 @@
+/*
 export { popupToggle, popupCloseByEsc }
 
 function popupToggle(popup) {
@@ -16,3 +17,4 @@ function popupCloseByEsc(evt) {
         popupToggle(popupOpen);
     }
 }
+*/

@@ -1,27 +1,16 @@
-import { popupToggle } from '../utils/utils.js';
-
 export class Card {
-    constructor(name, link, popup, popupImage, popupTitle, templateId) {
+    constructor(name, link, template, handleCardClick) {
         this._name = name;
         this._link = link;
-        this._templateId = templateId;
-        this._popup = popup;
-        this._popupImage = popupImage;
-        this._popupTitle = popupTitle;
-    }
-
-    _getTemplate() {
-        const cardElement = document
-            .querySelector(this._templateId)
-            .content
-            .querySelector('.element__cards')
-            .cloneNode(true);
-
-        return cardElement;
+        this._template = template;
+        this._handleCardClick = handleCardClick;
+        //this._popup = popup;
+        //this._popupImage = popupImage;
+        //this._popupTitle = popupTitle;
     }
 
     generateCard() {
-        this._element = this._getTemplate();
+        this._element = this._template;
         this._image = this._element.querySelector('.element__image');
         this._image.src = this._link;
         this._image.alt = this._name;
@@ -50,10 +39,13 @@ export class Card {
             });
 
         this._image
+            .addEventListener('click',  () =>  this._handleCardClick(this));
+/*
+        this._image
             .addEventListener('click', event => {
                 this._popupImage.src = this._link;
                 this._popupTitle.textContent = this._name;
                 popupToggle(this._popup);
-            });
+            }); */
     }
-}
+} 

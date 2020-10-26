@@ -1,7 +1,10 @@
 import { Card } from '../components/Card.js';
 import { initialCards, params } from '../utils/constant.js';
-import { popupToggle } from '../utils/utils.js';
 import { FormValidator } from '../components/FormValidator.js';
+import { Section } from '../components/Section.js';
+import { Popup } from '../components/Popup.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+
 
 const popupOpenButton = document.querySelector('.profile__edit-button');
 const popupCloseButton = document.querySelector('.popup__close_type_editform');
@@ -13,9 +16,6 @@ const popupAdd = document.querySelector('.popup_type_add');
 
 const popupCloseImg = document.querySelector('.popup__close_type_img');
 const popupWithImage = document.querySelector('.popup_type_img');
-
-const popupImage = document.querySelector('.popup__image');
-const popupTitle = document.querySelector('.popup__caption');
 
 const titleInput = document.querySelector('.popup__field_input_title');
 const imageInput = document.querySelector('.popup__field_input_url');
@@ -30,12 +30,44 @@ const subtitle = document.querySelector('.profile__subtitle');
 const nameInput = formEditProfile.querySelector('.popup__field_input_name');
 const jobInput = formEditProfile.querySelector('.popup__field_input_job');
 
+const generateCardTemplate = () => document
+    .querySelector("#elements")
+    .content
+    .querySelector('.element__cards')
+    .cloneNode(true);
+
+
+const elImage = document.querySelector('.element__image');
+
+
+const handleCardClick = (card) => {
+    const popupImage = new PopupWithImage({name: card._name, link: card._link}, '.popup_type_img'); 
+             popupImage.open();
+    };
+
+const cardsList = new Section({
+    items: initialCards,
+    renderer: (item) => {
+        const card = new Card(item.name, item.link, generateCardTemplate(), handleCardClick);
+
+        const cardElement = card.generateCard();
+
+        cardsList.addItem(cardElement);
+
+        handleCardClick.bind(item);
+    }
+},
+    '.element'
+);
+
+cardsList.renderItems();
+
 const createCard = (title, link) => {
-    const card = new Card(title, link, popupWithImage, popupImage, popupTitle, '#elements');
+    const card = new Card(title, link, generateCardTemplate());
     const cardElement = card.generateCard();
     return cardElement;
 }
-
+/*
 initialCards.forEach((item) => {
     const cardElement = createCard(item.name, item.link);
     elementList.append(cardElement);
@@ -46,21 +78,34 @@ const addCard = (event) => {
     elementList.prepend(cardElement);
     popupToggle(popupAdd);
 }
+*/
 
 const formAddElement = document.querySelector('.popup__form_add_js');
-formAddElement.addEventListener('submit', addCard);
+//formAddElement.addEventListener('submit', addCard);
 
-popupOpenButton.addEventListener('click', (evt) => popupToggle(popupEdit));
-popupCloseButton.addEventListener('click', (evt) => popupToggle(popupEdit));
+
+
+class PopupWithForm extends Popup {
+
+}
+
+
+
+
+
+
+
+popupOpenButton.addEventListener('click', (evt) => open(popupEdit));
+//popupCloseButton.addEventListener('click', (evt) => popupToggle(popupEdit));
 
 const formAddValidator = new FormValidator(params, params.formAdd);
-    formAddValidator.enableValidation();
+formAddValidator.enableValidation();
 
 const formEditValidator = new FormValidator(params, params.formEdit);
-    formEditValidator.enableValidation();
+formEditValidator.enableValidation();
 
 popupOpenAddButton.addEventListener('click', (evt) => {
-    popupToggle(popupAdd);
+    open(popupAdd);
 
     titleInput.value = "";
     imageInput.value = "";
@@ -71,9 +116,9 @@ popupOpenAddButton.addEventListener('click', (evt) => {
     formAddValidator.toggleButtonState(inputList, buttonElement);
 });
 
-popupCloseAddButton.addEventListener('click', (evt) => popupToggle(popupAdd));
+//popupCloseAddButton.addEventListener('click', (evt) => popupToggle(popupAdd));
 
-popupCloseImg.addEventListener('click', (evt) => popupToggle(popupWithImage));
+//popupCloseImg.addEventListener('click', (evt) => popupToggle(popupWithImage));
 
 function fillForm() {
 
@@ -95,7 +140,7 @@ function formEditSubmitHandler(evt) {
     title.textContent = name;
     subtitle.textContent = job;
 
-    popupToggle(popupEdit);
+    open(popupEdit);
 }
 
 formEditProfile.addEventListener('submit', formEditSubmitHandler);
@@ -106,7 +151,7 @@ const popupCloseByClickOnOverlay = (event) => {
         return;
     }
 
-    popupToggle(event.target);
+    close(event.target);
 }
 
 popupEdit.addEventListener('click', popupCloseByClickOnOverlay);

@@ -35,3 +35,8 @@ export const params = {
     inputErrorClass: 'popup__field-error',
     errorClass: 'popup__field-error-active'
 }
+
+export const popupClose = document.querySelector('.popup__close');
+
+export const popupImage = document.querySelector('.popup__image');
+export const popupTitle = document.querySelector('.popup__caption');
