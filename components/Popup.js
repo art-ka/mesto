@@ -1,5 +1,5 @@
 
-import {popupClose} from '../utils/constant.js';
+import { popupClose, popupImg, popupEdit, popupAdd } from '../utils/constant.js';
 
 export class Popup {
     constructor(popupSelector) {
@@ -8,6 +8,7 @@ export class Popup {
 
     open() {
         this._popup.classList.add('popup_opened');
+        this.setEventListeners(this);
     }
 
     close() {
@@ -16,23 +17,40 @@ export class Popup {
 
     _handleEscClose() {
         if (this._popup.classList.contains('popup_opened')) {
-            document.addEventListener('keydown', popupCloseByEsc = (evt) => {
+            document.addEventListener('keydown', (evt) => {
                 if (evt.key === 'Escape') {
                     const popupOpen = document.querySelector('.popup_opened');
-                    this._close(popupOpen);
+                    this.close();
                 }
             });
         } else {
-            document.removeEventListener('keydown', popupCloseByEsc = (evt) => {
+            document.removeEventListener('keydown', (evt) => {
                 if (evt.key === 'Escape') {
                     const popupOpen = document.querySelector('.popup_opened');
-                    this._close(popupOpen);
+                    this.close();
                 }
             });
         }
     }
-//слушатель клика иконке закрытия попапа
-    setEventListeners() {
-        popupClose.addEventListener('click', (evt) => this._close(this._popup));
+    _popupCloseByClickOnOverlay(popup) {
+        popup.close();
+    }
+
+    setEventListeners(popup) {
+        popupClose.addEventListener('click', () => this.close(popup));
+        popupEdit.addEventListener('click', () => this._popupCloseByClickOnOverlay(popup));
+        popupAdd.addEventListener('click', () => this._popupCloseByClickOnOverlay(popup));
+        popupImg.addEventListener('click', () => this._popupCloseByClickOnOverlay(popup));
+        document.addEventListener('keydown', () => this._handleEscClose(popup));
     }
 }
+
+
+
+
+
+
+
+
+
+

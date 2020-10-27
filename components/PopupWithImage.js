@@ -1,5 +1,5 @@
 import { Popup } from './Popup.js';
-import { popupImage, popupTitle } from '../utils/constant.js';
+import { popupImage, popupTitle, popupClose } from '../utils/constant.js';
 
 export class PopupWithImage extends Popup {
     constructor({name, link}, popupSelector) {
@@ -7,7 +7,7 @@ export class PopupWithImage extends Popup {
         this._name = name;
         this._link = link;
     }
-//нужно вставлять в попап картинку и атрибут src изображения и подпись к картинке.
+
     open() {
         super.open();
         popupImage.src = this._link;

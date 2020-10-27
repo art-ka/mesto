@@ -1,5 +1,5 @@
 import { Card } from '../components/Card.js';
-import { initialCards, params } from '../utils/constant.js';
+import { initialCards, params, popupEdit, popupAdd } from '../utils/constant.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
 import { Popup } from '../components/Popup.js';
@@ -8,14 +8,14 @@ import { PopupWithImage } from '../components/PopupWithImage.js';
 
 const popupOpenButton = document.querySelector('.profile__edit-button');
 const popupCloseButton = document.querySelector('.popup__close_type_editform');
-const popupEdit = document.querySelector('.popup_type_edit');
+//const popupEdit = document.querySelector('.popup_type_edit');
 
 const popupOpenAddButton = document.querySelector('.profile__add-button');
 const popupCloseAddButton = document.querySelector('.popup__close_type_addform');
-const popupAdd = document.querySelector('.popup_type_add');
+//const popupAdd = document.querySelector('.popup_type_add');
 
 const popupCloseImg = document.querySelector('.popup__close_type_img');
-const popupWithImage = document.querySelector('.popup_type_img');
+//const popupWithImage = document.querySelector('.popup_type_img');
 
 const titleInput = document.querySelector('.popup__field_input_title');
 const imageInput = document.querySelector('.popup__field_input_url');
@@ -41,9 +41,9 @@ const elImage = document.querySelector('.element__image');
 
 
 const handleCardClick = (card) => {
-    const popupImage = new PopupWithImage({name: card._name, link: card._link}, '.popup_type_img'); 
-             popupImage.open();
-    };
+    const popupImage = new PopupWithImage({ name: card._name, link: card._link }, '.popup_type_img');
+    popupImage.open();
+};
 
 const cardsList = new Section({
     items: initialCards,
@@ -61,6 +61,13 @@ const cardsList = new Section({
 );
 
 cardsList.renderItems();
+
+
+
+
+
+
+
 
 const createCard = (title, link) => {
     const card = new Card(title, link, generateCardTemplate());
@@ -82,17 +89,6 @@ const addCard = (event) => {
 
 const formAddElement = document.querySelector('.popup__form_add_js');
 //formAddElement.addEventListener('submit', addCard);
-
-
-
-class PopupWithForm extends Popup {
-
-}
-
-
-
-
-
 
 
 popupOpenButton.addEventListener('click', (evt) => open(popupEdit));
@@ -145,6 +141,7 @@ function formEditSubmitHandler(evt) {
 
 formEditProfile.addEventListener('submit', formEditSubmitHandler);
 
+/*
 const popupCloseByClickOnOverlay = (event) => {
 
     if (event.target !== event.currentTarget) {
@@ -157,3 +154,4 @@ const popupCloseByClickOnOverlay = (event) => {
 popupEdit.addEventListener('click', popupCloseByClickOnOverlay);
 popupAdd.addEventListener('click', popupCloseByClickOnOverlay);
 popupWithImage.addEventListener('click', popupCloseByClickOnOverlay);
+*/
