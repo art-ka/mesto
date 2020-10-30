@@ -1,16 +1,19 @@
 import { Card } from '../components/Card.js';
-import { initialCards, params, popupEdit, popupAdd } from '../utils/constant.js';
+import { initialCards, params, popupEdit, popupAdd, addCardButton, profileEditButton } from '../utils/constant.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
-import { Popup } from '../components/Popup.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { UserInfo } from '../components/UserInfo.js';
 
 
-const popupOpenButton = document.querySelector('.profile__edit-button');
+//const popupOpenButton = document.querySelector('.profile__edit-button');
 const popupCloseButton = document.querySelector('.popup__close_type_editform');
 //const popupEdit = document.querySelector('.popup_type_edit');
 
-const popupOpenAddButton = document.querySelector('.profile__add-button');
+//const popup = document.querySelector('.popup');
+
+//const popupOpenAddButton = document.querySelector('.profile__add-button');
 const popupCloseAddButton = document.querySelector('.popup__close_type_addform');
 //const popupAdd = document.querySelector('.popup_type_add');
 
@@ -37,7 +40,7 @@ const generateCardTemplate = () => document
     .cloneNode(true);
 
 
-const elImage = document.querySelector('.element__image');
+//const elImage = document.querySelector('.element__image');
 
 
 const handleCardClick = (card) => {
@@ -55,6 +58,7 @@ const cardsList = new Section({
         cardsList.addItem(cardElement);
 
         handleCardClick.bind(item);
+
     }
 },
     '.element'
@@ -62,6 +66,37 @@ const cardsList = new Section({
 
 cardsList.renderItems();
 
+//пробы
+
+const formAdd = new PopupWithForm({
+    popupSelector: '.popup_type_add',
+    popupField: '.popup__field',
+    handleFormSubmit: () => {
+        3
+    }
+});
+addCardButton.addEventListener('click', () => formAdd.open());
+
+const formEdit = new PopupWithForm({
+    popupSelector: '.popup_type_edit',
+    popupField: '.popup__field',
+    handleFormSubmit: () => {
+        3
+    }
+
+});
+profileEditButton.addEventListener('click', () => formEdit.open());
+
+
+
+
+
+
+const formAddValidator = new FormValidator(params, params.formAdd);
+formAddValidator.enableValidation();
+
+const formEditValidator = new FormValidator(params, params.formEdit);
+formEditValidator.enableValidation();
 
 
 
@@ -69,6 +104,43 @@ cardsList.renderItems();
 
 
 
+
+/*
+
+
+const submitAddForm = () => {
+    setEventListeners.bind(cardsList.getInputValues);
+    const popupAddForm = new PopupWithForm('.popup_type_add', '.popup__field', submitAddForm());
+    popupAddForm.close();
+}
+
+const submitEditForm = () => {
+    userInfo.setValue(this._getInputsValues());
+    this.close();
+}
+*/
+/*
+const handleAddFormClick = () => {
+    const popupAddForm = new PopupWithForm('.popup_type_add', '.popup__field', submitAddForm());
+
+    popupAddForm.open();
+}
+
+
+
+const handleEditFormClick = () => {
+    const popupEditForm = new PopupWithForm('.popup_type_edit', '.popup__field', submitEditForm());
+
+    popupEditForm.open();
+};
+
+popupOpenAddButton.addEventListener('click', handleAddFormClick);
+
+
+*/
+
+
+/*
 const createCard = (title, link) => {
     const card = new Card(title, link, generateCardTemplate());
     const cardElement = card.generateCard();
@@ -87,18 +159,25 @@ const addCard = (event) => {
 }
 */
 
-const formAddElement = document.querySelector('.popup__form_add_js');
+//const formAddElement = document.querySelector('.popup__form_add_js');
 //formAddElement.addEventListener('submit', addCard);
 
 
-popupOpenButton.addEventListener('click', (evt) => open(popupEdit));
+//popupOpenButton.addEventListener('click', (evt) => open(popupEdit));
 //popupCloseButton.addEventListener('click', (evt) => popupToggle(popupEdit));
 
-const formAddValidator = new FormValidator(params, params.formAdd);
-formAddValidator.enableValidation();
 
-const formEditValidator = new FormValidator(params, params.formEdit);
-formEditValidator.enableValidation();
+
+//const popupAddForm = new PopupWithForm('.popup_type_add', '.popup__field', handleAddFormClick());
+
+
+//метот setEventListener при создании передал колбеком (селектор попапа.селектор формы.и функцию обработчик сабмита)
+
+//const popupEditForm = new PopupWithForm();
+
+
+
+/*
 
 popupOpenAddButton.addEventListener('click', (evt) => {
     open(popupAdd);

@@ -40,6 +40,7 @@ export class Card {
 
         this._image
             .addEventListener('click',  () =>  this._handleCardClick(this));
+
 /*
         this._image
             .addEventListener('click', event => {
