@@ -1,7 +1,7 @@
 export class UserInfo {
     constructor({titleSelector, subtitleSelector}) {
-        this._titleSelector = document.querySelector(titleSelector);
-        this._subtitleSelector = document.querySelector(subtitleSelector);
+        titleSelector = document.querySelector('.profile__title');
+        subtitleSelector = document.querySelector('.profile__subtitle');
     }
 
     getUserInfo() {
@@ -10,7 +10,7 @@ export class UserInfo {
         name: titleSelector.textContent,
         jobInput: subtitleSelector.textContent
     }
-    
+
     }
 
     setUserInfo() {

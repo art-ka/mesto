@@ -71,8 +71,9 @@ cardsList.renderItems();
 const formAdd = new PopupWithForm({
     popupSelector: '.popup_type_add',
     popupField: '.popup__field',
-    handleFormSubmit: () => {
-        3
+    handleFormSubmit: (inputValues) => {
+        cardsList._renderer({ name: inputValues.title, link: inputValues.picture })
+        formAdd.close();
     }
 });
 addCardButton.addEventListener('click', () => formAdd.open());
@@ -81,7 +82,8 @@ const formEdit = new PopupWithForm({
     popupSelector: '.popup_type_edit',
     popupField: '.popup__field',
     handleFormSubmit: () => {
-        3
+        UserInfo.setUserInfo(getInputsValues);
+        formEdit.close();
     }
 
 });
