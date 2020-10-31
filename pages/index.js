@@ -78,7 +78,15 @@ const formAdd = new PopupWithForm({
         formAdd.close();
     }
 });
-addCardButton.addEventListener('click', () => formAdd.open());
+
+addCardButton.addEventListener('click', () => {
+    formAdd.open();
+
+    const inputList = Array.from(popupAdd.querySelectorAll('.popup__field'));
+    const buttonElement = popupAdd.querySelector('.popup__submit-button');
+
+    formAddValidator.toggleButtonState(inputList, buttonElement);
+});
 
 const formEdit = new PopupWithForm({
     popupSelector: '.popup_type_edit',
@@ -90,9 +98,14 @@ const formEdit = new PopupWithForm({
 
 });
 
-//userInfo.getUserInfo({name: inputsValues.fullname, job: inputsValues.job});
+profileEditButton.addEventListener('click', () => {
+    const profile = userInfo.getUserInfo();
 
-profileEditButton.addEventListener('click', () => formEdit.open());
+    formEdit._popupField[0].value = profile.name;
+    formEdit._popupField[1].value = profile.jobInput;
+
+    formEdit.open();
+});
 
 
 const formAddValidator = new FormValidator(params, params.formAdd);
@@ -102,135 +115,3 @@ const formEditValidator = new FormValidator(params, params.formEdit);
 formEditValidator.enableValidation();
 
 
-
-
-
-/*
-
-
-const submitAddForm = () => {
-    setEventListeners.bind(cardsList.getInputValues);
-    const popupAddForm = new PopupWithForm('.popup_type_add', '.popup__field', submitAddForm());
-    popupAddForm.close();
-}
-
-const submitEditForm = () => {
-    userInfo.setValue(this._getInputsValues());
-    this.close();
-}
-*/
-/*
-const handleAddFormClick = () => {
-    const popupAddForm = new PopupWithForm('.popup_type_add', '.popup__field', submitAddForm());
-
-    popupAddForm.open();
-}
-
-
-
-const handleEditFormClick = () => {
-    const popupEditForm = new PopupWithForm('.popup_type_edit', '.popup__field', submitEditForm());
-
-    popupEditForm.open();
-};
-
-popupOpenAddButton.addEventListener('click', handleAddFormClick);
-
-
-*/
-
-
-/*
-const createCard = (title, link) => {
-    const card = new Card(title, link, generateCardTemplate());
-    const cardElement = card.generateCard();
-    return cardElement;
-}
-/*
-initialCards.forEach((item) => {
-    const cardElement = createCard(item.name, item.link);
-    elementList.append(cardElement);
-});
-
-const addCard = (event) => {
-    const cardElement = createCard(titleInput.value, imageInput.value);
-    elementList.prepend(cardElement);
-    popupToggle(popupAdd);
-}
-*/
-
-//const formAddElement = document.querySelector('.popup__form_add_js');
-//formAddElement.addEventListener('submit', addCard);
-
-
-//popupOpenButton.addEventListener('click', (evt) => open(popupEdit));
-//popupCloseButton.addEventListener('click', (evt) => popupToggle(popupEdit));
-
-
-
-//const popupAddForm = new PopupWithForm('.popup_type_add', '.popup__field', handleAddFormClick());
-
-
-//метот setEventListener при создании передал колбеком (селектор попапа.селектор формы.и функцию обработчик сабмита)
-
-//const popupEditForm = new PopupWithForm();
-
-
-
-/*
-
-popupOpenAddButton.addEventListener('click', (evt) => {
-    open(popupAdd);
-
-    titleInput.value = "";
-    imageInput.value = "";
-
-    const inputList = Array.from(popupAdd.querySelectorAll('.popup__field'));
-    const buttonElement = popupAdd.querySelector('.popup__submit-button');
-
-    formAddValidator.toggleButtonState(inputList, buttonElement);
-});
-
-//popupCloseAddButton.addEventListener('click', (evt) => popupToggle(popupAdd));
-
-//popupCloseImg.addEventListener('click', (evt) => popupToggle(popupWithImage));
-
-function fillForm() {
-
-    const nameProfile = title.textContent;
-    const jobProfile = subtitle.textContent;
-
-    nameInput.value = nameProfile;
-    jobInput.value = jobProfile;
-}
-
-popupOpenButton.addEventListener('click', fillForm);
-
-function formEditSubmitHandler(evt) {
-    evt.preventDefault();
-
-    const name = nameInput.value;
-    const job = jobInput.value;
-
-    title.textContent = name;
-    subtitle.textContent = job;
-
-    open(popupEdit);
-}
-
-formEditProfile.addEventListener('submit', formEditSubmitHandler);
-
-/*
-const popupCloseByClickOnOverlay = (event) => {
-
-    if (event.target !== event.currentTarget) {
-        return;
-    }
-
-    close(event.target);
-}
-
-popupEdit.addEventListener('click', popupCloseByClickOnOverlay);
-popupAdd.addEventListener('click', popupCloseByClickOnOverlay);
-popupWithImage.addEventListener('click', popupCloseByClickOnOverlay);
-*/

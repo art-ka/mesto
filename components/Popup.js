@@ -1,4 +1,3 @@
-import { popupEdit } from '../utils/constant.js';
 
 export class Popup {
     constructor(popupSelector) {
