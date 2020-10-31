@@ -33,6 +33,8 @@ const subtitle = document.querySelector('.profile__subtitle');
 const nameInput = formEditProfile.querySelector('.popup__field_input_name');
 const jobInput = formEditProfile.querySelector('.popup__field_input_job');
 
+const userInfo = new UserInfo();
+
 const generateCardTemplate = () => document
     .querySelector("#elements")
     .content
@@ -81,17 +83,16 @@ addCardButton.addEventListener('click', () => formAdd.open());
 const formEdit = new PopupWithForm({
     popupSelector: '.popup_type_edit',
     popupField: '.popup__field',
-    handleFormSubmit: () => {
-        UserInfo.setUserInfo(getInputsValues);
+    handleFormSubmit: (inputsValues) => {
+        userInfo.setUserInfo({name: inputsValues.fullname, job: inputsValues.job});
         formEdit.close();
     }
 
 });
+
+//userInfo.getUserInfo({name: inputsValues.fullname, job: inputsValues.job});
+
 profileEditButton.addEventListener('click', () => formEdit.open());
-
-
-
-
 
 
 const formAddValidator = new FormValidator(params, params.formAdd);
@@ -99,9 +100,6 @@ formAddValidator.enableValidation();
 
 const formEditValidator = new FormValidator(params, params.formEdit);
 formEditValidator.enableValidation();
-
-
-
 
 
 

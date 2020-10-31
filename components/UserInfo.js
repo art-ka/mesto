@@ -1,24 +1,24 @@
 export class UserInfo {
-    constructor({titleSelector, subtitleSelector}) {
-        titleSelector = document.querySelector('.profile__title');
-        subtitleSelector = document.querySelector('.profile__subtitle');
+    constructor() {
+        this.titleSelector = document.querySelector('.profile__title');
+        this.subtitleSelector = document.querySelector('.profile__subtitle');
     }
 
     getUserInfo() {
         //возвращает объект с данными пользователя
         return {
-        name: titleSelector.textContent,
-        jobInput: subtitleSelector.textContent
+        name: this.titleSelector.textContent,
+        jobInput: this.subtitleSelector.textContent
     }
 
     }
 
-    setUserInfo() {
+    setUserInfo({name, job}) {
         //принимает новые данные пользователя и добавляет их на страницу
-        evt.preventDefault();
+        //evt.preventDefault();
 
-        titleSelector.textContent = nameInput.value;
-        subtitleSelector.textContent = jobInput.value;
+        this.titleSelector.textContent = name;
+        this.subtitleSelector.textContent = job;
 
     }
 }

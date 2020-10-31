@@ -1,3 +1,4 @@
+import { popupEdit } from '../utils/constant.js';
 
 export class Popup {
     constructor(popupSelector) {
@@ -30,14 +31,19 @@ export class Popup {
             });
         }
     }
-    _popupCloseByClickOnOverlay(popup) {
-        popup.close();
-    }
 
     setEventListeners(popup) {
         const popupCloseButton = this._popup.querySelector('.popup__close');
         popupCloseButton.addEventListener('click', () => popup.close());
-        //popupEdit.addEventListener('click', () => this._popupCloseByClickOnOverlay(popup));
+
+
+        this._popup.addEventListener('click', (evt) => {
+            if (evt.target !== evt.currentTarget) {
+                return;
+            }
+
+            this.close(evt.currentTarget);
+        });
         //popupAdd.addEventListener('click', () => this._popupCloseByClickOnOverlay(popup));
         //popupImg.addEventListener('click', () => this._popupCloseByClickOnOverlay(popup));
         document.addEventListener('keydown', () => this._handleEscClose(popup));
