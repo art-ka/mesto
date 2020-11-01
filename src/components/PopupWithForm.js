@@ -1,5 +1,4 @@
 import { Popup } from './Popup.js';
-//import { UserInfo } from './UserInfo.js';
 
 export class PopupWithForm extends Popup {
     constructor({ popupSelector, popupField, handleFormSubmit }) {
@@ -7,7 +6,7 @@ export class PopupWithForm extends Popup {
         this._handleFormSubmit = handleFormSubmit;
         this._popupField = document.querySelectorAll(popupField);
     }
-    //собирает данные всех полей формы
+
     _getInputValues() {
         const userInputs = document.querySelectorAll('.popup__field');
         this._inputValues = {};
@@ -19,8 +18,7 @@ export class PopupWithForm extends Popup {
 
     close() {
         super.close();
-        //сброс формы 
-        document.querySelectorAll('.popup__form').forEach((form)=>form.reset());
+        document.querySelectorAll('.popup__form').forEach((form) => form.reset());
     }
 
     open() {
@@ -29,16 +27,10 @@ export class PopupWithForm extends Popup {
 
     setEventListeners(popup) {
         super.setEventListeners(popup);
-        //обработчик сабмита формы
         this._popup.addEventListener('submit', (evt) => {
             evt.preventDefault();
             this._handleFormSubmit(this._getInputValues());
         })
-
-        /*
-                document
-                    .querySelector('.profile__add-button')
-                    .addEventListener('click', () => this._open('.popup_type_add')); */
     }
 }
 

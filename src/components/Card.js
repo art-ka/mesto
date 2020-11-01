@@ -4,9 +4,6 @@ export class Card {
         this._link = link;
         this._template = template;
         this._handleCardClick = handleCardClick;
-        //this._popup = popup;
-        //this._popupImage = popupImage;
-        //this._popupTitle = popupTitle;
     }
 
     generateCard() {
@@ -39,14 +36,6 @@ export class Card {
             });
 
         this._image
-            .addEventListener('click',  () =>  this._handleCardClick(this));
-
-/*
-        this._image
-            .addEventListener('click', event => {
-                this._popupImage.src = this._link;
-                this._popupTitle.textContent = this._name;
-                popupToggle(this._popup);
-            }); */
+            .addEventListener('click', () => this._handleCardClick(this));
     }
 } 

@@ -36,13 +36,9 @@ export const params = {
     errorClass: 'popup__field-error-active'
 }
 
-//export const popupCloseButton = document.querySelector('.popup__close');
-
 export const popupImage = document.querySelector('.popup__image');
 export const popupTitle = document.querySelector('.popup__caption');
 
-export const popupImg = document.querySelector('.popup_type_img');
-export const popupEdit = document.querySelector('.popup_type_edit');
 export const popupAdd = document.querySelector('.popup_type_add');
 
 export const profileEditButton = document.querySelector('.profile__edit-button');

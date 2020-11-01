@@ -1,37 +1,10 @@
 import { Card } from '../components/Card.js';
-import { initialCards, params, popupEdit, popupAdd, addCardButton, profileEditButton } from '../utils/constant.js';
+import { initialCards, params, popupAdd, addCardButton, profileEditButton } from '../utils/constant.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
-
-
-//const popupOpenButton = document.querySelector('.profile__edit-button');
-const popupCloseButton = document.querySelector('.popup__close_type_editform');
-//const popupEdit = document.querySelector('.popup_type_edit');
-
-//const popup = document.querySelector('.popup');
-
-//const popupOpenAddButton = document.querySelector('.profile__add-button');
-const popupCloseAddButton = document.querySelector('.popup__close_type_addform');
-//const popupAdd = document.querySelector('.popup_type_add');
-
-const popupCloseImg = document.querySelector('.popup__close_type_img');
-//const popupWithImage = document.querySelector('.popup_type_img');
-
-const titleInput = document.querySelector('.popup__field_input_title');
-const imageInput = document.querySelector('.popup__field_input_url');
-
-const elementList = document.querySelector('.element');
-
-const formEditProfile = popupEdit.querySelector('.popup__form');
-
-const title = document.querySelector('.profile__title');
-const subtitle = document.querySelector('.profile__subtitle');
-
-const nameInput = formEditProfile.querySelector('.popup__field_input_name');
-const jobInput = formEditProfile.querySelector('.popup__field_input_job');
 
 const userInfo = new UserInfo();
 
@@ -40,10 +13,6 @@ const generateCardTemplate = () => document
     .content
     .querySelector('.element__cards')
     .cloneNode(true);
-
-
-//const elImage = document.querySelector('.element__image');
-
 
 const handleCardClick = (card) => {
     const popupImage = new PopupWithImage({ name: card._name, link: card._link }, '.popup_type_img');
@@ -68,8 +37,6 @@ const cardsList = new Section({
 
 cardsList.renderItems();
 
-//пробы
-
 const formAdd = new PopupWithForm({
     popupSelector: '.popup_type_add',
     popupField: '.popup__field',
@@ -92,7 +59,7 @@ const formEdit = new PopupWithForm({
     popupSelector: '.popup_type_edit',
     popupField: '.popup__field',
     handleFormSubmit: (inputsValues) => {
-        userInfo.setUserInfo({name: inputsValues.fullname, job: inputsValues.job});
+        userInfo.setUserInfo({ name: inputsValues.fullname, job: inputsValues.job });
         formEdit.close();
     }
 
@@ -106,7 +73,6 @@ profileEditButton.addEventListener('click', () => {
 
     formEdit.open();
 });
-
 
 const formAddValidator = new FormValidator(params, params.formAdd);
 formAddValidator.enableValidation();
