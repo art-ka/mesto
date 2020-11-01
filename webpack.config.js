@@ -2,13 +2,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
 const { DefinePlugin } = require('webpack');
-const ASSET_PATH = process.env.ASSET_PATH || '/';
+const ASSET_PATH = process.env.ASSET_PATH || path.resolve(__dirname, 'docs');
 
 module.exports = {
     entry: { main: './src/pages/index.js' },
     output: {
-        publicPath: ASSET_PATH,
-        path: path.resolve(__dirname, 'dist'),
+        publicPath: 'mesto/',
+        path: ASSET_PATH,
         filename: 'main.js'
     },
     devtool: 'inline-source-map',
