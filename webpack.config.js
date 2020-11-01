@@ -7,7 +7,7 @@ const ASSET_PATH = process.env.ASSET_PATH || path.resolve(__dirname, 'docs');
 module.exports = {
     entry: { main: './src/pages/index.js' },
     output: {
-        publicPath: 'mesto/',
+        publicPath: './',
         path: ASSET_PATH,
         filename: 'main.js'
     },
