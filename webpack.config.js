@@ -2,13 +2,13 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
 const { DefinePlugin } = require('webpack');
-const ASSET_PATH = process.env.ASSET_PATH || path.resolve(__dirname, 'docs');
+//const ASSET_PATH = process.env.ASSET_PATH || path.resolve(__dirname, '');
 
 module.exports = {
     entry: { main: './src/pages/index.js' },
     output: {
-        publicPath: './',
-        path: ASSET_PATH,
+        publicPath: '/mesto/',
+        path: path.resolve(__dirname, ''),
         filename: 'main.js'
     },
     devtool: 'inline-source-map',
@@ -56,8 +56,5 @@ module.exports = {
             template: './src/index.html' // путь к файлу index.html
         }),
         new MiniCssExtractPlugin(),
-        new DefinePlugin({
-            'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
-        })
     ]
 }
