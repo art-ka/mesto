@@ -2,12 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
 const { DefinePlugin } = require('webpack');
-const ASSET_PATH = process.env.ASSET_PATH || '/';
 
 module.exports = {
     entry: { main: './src/pages/index.js' },
     output: {
-        publicPath: ASSET_PATH,
+        publicPath: '',
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js'
     },
@@ -56,8 +55,5 @@ module.exports = {
             template: './src/index.html' // путь к файлу index.html
         }),
         new MiniCssExtractPlugin(),
-        new DefinePlugin({
-            'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
-        })
     ]
 }
