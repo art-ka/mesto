@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin'); 
 const { DefinePlugin } = require('webpack');
-//const ASSET_PATH = process.env.ASSET_PATH || path.resolve(__dirname, '');
 
 module.exports = {
     entry: { main: './src/pages/index.js' },
