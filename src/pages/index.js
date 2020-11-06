@@ -45,7 +45,7 @@ const getCardElement = ({ name, link }) => {
 const formAdd = new PopupWithForm({
     popupSelector: '.popup_type_add',
     handleFormSubmit: (inputValues) => {
-        cardList.addItem({ name: inputValues.title, link: inputValues.picture });
+        cardsList.addItem({ name: inputValues.title, link: inputValues.picture });
         formAdd.close();
     }
 });
