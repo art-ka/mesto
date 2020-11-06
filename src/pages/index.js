@@ -15,9 +15,11 @@ const generateCardTemplate = () => document
     .querySelector('.element__cards')
     .cloneNode(true);
 
-const handleCardClick = (card) => {
-    const popupImage = new PopupWithImage({ name: card._name, link: card._link }, '.popup_type_img');
-    popupImage.open();
+const popupImage = new PopupWithImage('.popup_type_img');
+popupImage.setEventListeners();
+
+const handleCardClick = ({ name, link }) => {
+    popupImage.open(name, link);
 };
 
 const cardsList = new Section({
@@ -28,9 +30,6 @@ const cardsList = new Section({
         const cardElement = card.generateCard();
 
         cardsList.addItem(cardElement);
-
-        handleCardClick.bind(item);
-
     }
 },
     '.element'
@@ -38,14 +37,20 @@ const cardsList = new Section({
 
 cardsList.renderItems();
 
+const getCardElement = ({ name, link }) => {
+    const card = new Card(name, link, generateCardTemplate(), handleCardClick);
+    return card.generateCard();
+}
+
 const formAdd = new PopupWithForm({
     popupSelector: '.popup_type_add',
-    popupField: '.popup__field',
     handleFormSubmit: (inputValues) => {
-        cardsList._renderer({ name: inputValues.title, link: inputValues.picture })
+        cardList.addItem({ name: inputValues.title, link: inputValues.picture });
         formAdd.close();
     }
 });
+
+formAdd.setEventListeners(formEdit);
 
 addCardButton.addEventListener('click', () => {
     formAdd.open();
@@ -58,7 +63,6 @@ addCardButton.addEventListener('click', () => {
 
 const formEdit = new PopupWithForm({
     popupSelector: '.popup_type_edit',
-    popupField: '.popup__field',
     handleFormSubmit: (inputsValues) => {
         userInfo.setUserInfo({ name: inputsValues.fullname, job: inputsValues.job });
         formEdit.close();
@@ -68,12 +72,16 @@ const formEdit = new PopupWithForm({
 
 profileEditButton.addEventListener('click', () => {
     const profile = userInfo.getUserInfo();
+    const inputsName = document.querySelector('.popup__field_input_name');
+    const inputsJob = document.querySelector('.popup__field_input_job');
 
-    formEdit._popupField[0].value = profile.name;
-    formEdit._popupField[1].value = profile.jobInput;
+    inputsName.value = profile.name;
+    inputsJob.value = profile.jobInput;
 
     formEdit.open();
 });
+
+formEdit.setEventListeners();
 
 const formAddValidator = new FormValidator(params, params.formAdd);
 formAddValidator.enableValidation();
