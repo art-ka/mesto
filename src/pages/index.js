@@ -22,13 +22,15 @@ const handleCardClick = ({ name, link }) => {
     popupImage.open(name, link);
 };
 
+const getCardElement = ({ name, link }) => {
+    const card = new Card(name, link, generateCardTemplate(), handleCardClick);
+    return card.generateCard();
+}
+
 const cardsList = new Section({
     items: initialCards,
     renderer: (item) => {
-        const card = new Card(item.name, item.link, generateCardTemplate(), handleCardClick);
-
-        const cardElement = card.generateCard();
-
+        const cardElement = getCardElement({name: item.name, link: item.link});
         cardsList.addItem(cardElement);
     }
 },
@@ -37,15 +39,11 @@ const cardsList = new Section({
 
 cardsList.renderItems();
 
-const getCardElement = ({ name, link }) => {
-    const card = new Card(name, link, generateCardTemplate(), handleCardClick);
-    return card.generateCard();
-}
-
 const formAdd = new PopupWithForm({
     popupSelector: '.popup_type_add',
     handleFormSubmit: (inputValues) => {
-        cardsList.addItem({ name: inputValues.title, link: inputValues.picture });
+        const cardElement = getCardElement({ name: inputValues.title, link: inputValues.picture });
+        cardsList.addItem(cardElement);
         formAdd.close();
     }
 });
