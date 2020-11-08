@@ -21,7 +21,7 @@ export class Popup {
                 }
             }
 
-    setEventListeners(popup) {
+    setEventListeners() {
         const popupCloseButton = this._popup.querySelector('.popup__close');
         popupCloseButton.addEventListener('click', () => this.close());
 
