@@ -1,5 +1,5 @@
 import { Card } from '../components/Card.js';
-import { initialCards, params, popupAdd, addCardButton, profileEditButton } from '../utils/constant.js';
+import { initialCards, params, popupAdd, addCardButton, profileEditButton, inputsName, inputsJob } from '../utils/constant.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
@@ -15,7 +15,7 @@ const generateCardTemplate = () => document
     .querySelector('.element__cards')
     .cloneNode(true);
 
-const popupImage = new PopupWithImage('.popup_type_img');
+const popupImage = new PopupWithImage('.popup_type_img', '.popup__image', '.popup__caption');
 popupImage.setEventListeners();
 
 const handleCardClick = ({ name, link }) => {
@@ -70,8 +70,6 @@ const formEdit = new PopupWithForm({
 
 profileEditButton.addEventListener('click', () => {
     const profile = userInfo.getUserInfo();
-    const inputsName = document.querySelector('.popup__field_input_name');
-    const inputsJob = document.querySelector('.popup__field_input_job');
 
     inputsName.value = profile.name;
     inputsJob.value = profile.jobInput;
