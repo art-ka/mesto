@@ -1,11 +1,27 @@
 import { Card } from '../components/Card.js';
-import { initialCards, params, popupAdd, addCardButton, profileEditButton, inputsName, inputsJob } from '../utils/constant.js';
+import { params, popupAdd, addCardButton, profileEditButton, inputsName, inputsJob } from '../utils/constant.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo.js';
+import { Api } from '../components/Api.js';
 import './index.css';
+
+
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-17',
+    headers: {
+        authorization: 'ef890c66-d7a0-4a1d-a482-7b78f3f64350',
+        'Content-Type': 'application/json'
+    }
+});
+
+
+
+
+
+
 
 const userInfo = new UserInfo();
 
@@ -18,26 +34,54 @@ const generateCardTemplate = () => document
 const popupImage = new PopupWithImage('.popup_type_img', '.popup__image', '.popup__caption');
 popupImage.setEventListeners();
 
+/*
 const handleCardClick = ({ name, link }) => {
     popupImage.open(name, link);
 };
+
 
 const getCardElement = ({ name, link }) => {
     const card = new Card(name, link, generateCardTemplate(), handleCardClick);
     return card.generateCard();
 }
+*/
 
-const cardsList = new Section({
-    items: initialCards,
-    renderer: (item) => {
-        const cardElement = getCardElement({name: item.name, link: item.link});
-        cardsList.addItem(cardElement);
-    }
-},
-    '.element'
-);
+const getCardElement = api.getInitialCards().then((data) => {
+    console.log(data);
+    const name = data.map(item => item.name);
+    const link = data.map(item => item.link);
 
-cardsList.renderItems();
+
+    const cardsList = new Section({
+        items: data,
+        renderer: (item) => {
+            const cardElement = new Card({ name: item.name, link: item.link }, generateCardTemplate(), {
+                handleCardClick: ({ name, link }) => {
+                    popupImage.open(name, link);
+                }
+            })
+
+            cardsList.addItem(cardElement.generateCard());
+        }
+    },
+        '.element'
+    )
+
+    cardsList.renderItems();
+
+});
+
+console.log(getCardElement);
+
+
+
+
+
+
+
+
+
+
 
 const formAdd = new PopupWithForm({
     popupSelector: '.popup_type_add',

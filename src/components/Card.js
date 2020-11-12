@@ -1,5 +1,5 @@
 export class Card {
-    constructor(name, link, template, handleCardClick) {
+    constructor({name, link}, template, { handleCardClick }) {
         this._name = name;
         this._link = link;
         this._template = template;
@@ -36,6 +36,6 @@ export class Card {
             });
 
         this._image
-            .addEventListener('click', () => this._handleCardClick({ name: this._name, link: this._link}));
+            .addEventListener('click', () => this._handleCardClick({ name: this._name, link: this._link }));
     }
 } 
