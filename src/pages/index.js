@@ -1,5 +1,5 @@
 import { Card } from '../components/Card.js';
-import { params, popupAdd, addCardButton, profileEditButton, inputsName, inputsJob } from '../utils/constant.js';
+import { params, popupAdd, addCardButton, profileEditButton, inputsName, inputsJob, inputsAvatar, profileAvatarButton } from '../utils/constant.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
@@ -79,8 +79,6 @@ formAdd.setEventListeners(formEdit);
 
 
 
-
-
 addCardButton.addEventListener('click', () => {
     formAdd.open();
 
@@ -96,7 +94,6 @@ const formEdit = new PopupWithForm({
         userInfo.setUserInfo({ name: inputsValues.fullname, job: inputsValues.job });
         formEdit.close();
     }
-
 });
 
 profileEditButton.addEventListener('click', () => {
@@ -110,10 +107,30 @@ profileEditButton.addEventListener('click', () => {
 
 formEdit.setEventListeners();
 
+const formAvatar = new PopupWithForm({
+    popupSelector: '.popup_type_avatar',
+    handleFormSubmit: (inputsValues) => {
+        userInfo.setAvatar({ avatar: inputsValues.avatar });
+        formAvatar.close();
+    }
+});
+
+profileAvatarButton.addEventListener('click', () => {
+    const avatar = document.querySelector('.profile__avatar');
+
+    inputsAvatar.value = avatar.src;
+
+    formAvatar.open();
+});
+
+formAvatar.setEventListeners();
+
+
+
+
 const formAddValidator = new FormValidator(params, params.formAdd);
 formAddValidator.enableValidation();
 
 const formEditValidator = new FormValidator(params, params.formEdit);
 formEditValidator.enableValidation();
-
 

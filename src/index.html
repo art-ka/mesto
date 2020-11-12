@@ -19,7 +19,7 @@
                 <main class="content">
                     <section class="profile">
                         <div class="profile__user">
-                        <img src="./images/image.jpg" alt="Аватарка пользователя" class="profile__avatar" />
+                            <img src="./images/image.jpg" alt="Аватарка пользователя" class="profile__avatar" />
                         </div>
                         <div class="profile__info">
                             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -36,7 +36,7 @@
                     <section class="elements">
                         <ul class="element"></ul>
                     </section>
-                    
+
                 </main>
 
                 <footer class="footer">
@@ -98,6 +98,25 @@
             </button>
             <img class="popup__image" src="#" />
             <h3 class="popup__caption"></h3>
+        </div>
+    </section>
+
+    <section class="popup popup_type_avatar">
+        <div class="popup__container">
+            <button class="popup__close popup__close_type_img" type="button">
+                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть окно обновления аватара" />
+            </button>
+            <div class="popup__content">
+                <h3 class="popup__title">Обновить аватар</h3>
+                <form class="popup__form" name="avatar-form">
+                    <input type="url" id="url-input" value="" name="avatar"
+                        class="popup__field popup__field_input_avatar" required />
+                    <span id="url-input-error" class="popup__field-error"></span>
+                    <button class="popup__submit-button" type="submit" value="Сохранить">
+                        Сохранить
+                    </button>
+                </form>
+            </div>
         </div>
     </section>
 
