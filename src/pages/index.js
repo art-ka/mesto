@@ -34,65 +34,52 @@ const generateCardTemplate = () => document
 const popupImage = new PopupWithImage('.popup_type_img', '.popup__image', '.popup__caption');
 popupImage.setEventListeners();
 
-/*
-const handleCardClick = ({ name, link }) => {
-    popupImage.open(name, link);
-};
 
+const cardsList = new Section({
+    items: getCardElement,
+    renderer: (item) => {
+        const cardElement = new Card({ name: item.name, link: item.link }, generateCardTemplate(), {
+            handleCardClick: ({ name, link }) => {
+                popupImage.open(name, link);
+            }
+        })
 
-const getCardElement = ({ name, link }) => {
-    const card = new Card(name, link, generateCardTemplate(), handleCardClick);
-    return card.generateCard();
-}
-*/
+        cardsList.addItem(cardElement.generateCard());
+    }
+},
+    '.element'
+)
+
 
 const getCardElement = api.getInitialCards().then((data) => {
-    console.log(data);
     const name = data.map(item => item.name);
     const link = data.map(item => item.link);
 
-
-    const cardsList = new Section({
-        items: data,
-        renderer: (item) => {
-            const cardElement = new Card({ name: item.name, link: item.link }, generateCardTemplate(), {
-                handleCardClick: ({ name, link }) => {
-                    popupImage.open(name, link);
-                }
-            })
-
-            cardsList.addItem(cardElement.generateCard());
-        }
-    },
-        '.element'
-    )
-
-    cardsList.renderItems();
+    cardsList.renderItems(data);
 
 });
 
-console.log(getCardElement);
-
-
-
-
-
-
-
-
-
-
-
 const formAdd = new PopupWithForm({
     popupSelector: '.popup_type_add',
-    handleFormSubmit: (inputValues) => {
-        const cardElement = getCardElement({ name: inputValues.title, link: inputValues.picture });
-        cardsList.addItem(cardElement);
+    handleFormSubmit: (data) => {
+        api.addCard().then((data) => data);
+        const cardElement = new Card({ name: data.title, link: data.picture }, generateCardTemplate(), {
+            handleCardClick: ({ name, link }) => {
+                popupImage.open(name, link);
+            }
+        })
+
+        cardsList.addItem(cardElement.generateCard());
         formAdd.close();
+        
     }
 });
 
 formAdd.setEventListeners(formEdit);
+
+
+
+
 
 addCardButton.addEventListener('click', () => {
     formAdd.open();

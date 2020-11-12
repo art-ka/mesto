@@ -1,3 +1,5 @@
+import { from } from "webpack-sources/lib/CompatSource";
+
 export class Section {
     constructor({ items, renderer }, containerSelector) {
         this._renderedItems = items;
@@ -6,8 +8,8 @@ export class Section {
         this._container = document.querySelector(containerSelector);
     }
 
-    renderItems() {
-        this._renderedItems.forEach(item => this._renderer(item));
+    renderItems(data) {
+        data.forEach(item => this._renderer(item));
     }
 
     addItem(element) {
