@@ -1,5 +1,5 @@
 export class Card {
-    constructor({name, link}, template, { handleCardClick }) {
+    constructor({ name, link }, template, { handleCardClick }) {
         this._name = name;
         this._link = link;
         this._template = template;
@@ -33,6 +33,13 @@ export class Card {
             .querySelector('.element__like-image')
             .addEventListener('click', event => {
                 event.target.classList.toggle('element__like-image-active');
+
+                let like = true,
+                likeCount = document.querySelector('.element__likes').innerHTML;
+
+                likeCount = like ? ++likeCount : --likeCount;
+                like = !like;
+                document.querySelector('.element__likes').innerHTML = likeCount;
             });
 
         this._image
