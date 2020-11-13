@@ -120,6 +120,22 @@
         </div>
     </section>
 
+    <section class="popup popup_type_delete">
+        <div class="popup__container popup__container-delete">
+            <button class="popup__close popup__close_type_img" type="button">
+                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть окно обновления аватара" />
+            </button>
+            <div class="popup__content">
+                <h3 class="popup__title popup__title-delete">Вы уверены?</h3>
+                <form class="popup__form" name="delet-form">
+                    <button class="popup__submit-button popup__submit-button-delete" type="submit" value="Да">
+                        Да
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <template id="elements">
         <li class="element__cards">
             <img class="element__image" src="#" />
@@ -128,7 +144,7 @@
                 <button class="element__like-button" type="button">
                     <img class="element__like-image" src="./images/heart.svg" alt="Поставить лайк" />
                 </button>
-                <div class="element__likes">0</div>
+                <div class="element__likes"></div>
                 <button class="element__delete-button" type="button"></button>
             </div>
         </li>
