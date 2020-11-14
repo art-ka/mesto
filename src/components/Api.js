@@ -132,16 +132,12 @@ export class Api {
             })
     }
 
-    likeCard() {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-17/cards/likes/${_id}', {
+    likeCard(_id) {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-17/cards/likes/${_id}`, {
             method: "PUT",
             headers: {
                 authorization: 'ef890c66-d7a0-4a1d-a482-7b78f3f64350',
-                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ 
-                _id: "id"
-            })
         })
             .then(res => {
                 if (res.ok) {
@@ -159,17 +155,12 @@ export class Api {
             })
     }
 
-    deleteLikeCard() {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-17/cards/likes/${_id}', {
+    deleteLikeCard(_id) {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-17/cards/likes/${_id}`, {
             method: "DELETE",
             headers: {
                 authorization: 'ef890c66-d7a0-4a1d-a482-7b78f3f64350',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ 
-                _id: "id"
-            })
-            
+            }
         })
             .then(res => {
                 if (res.ok) {
@@ -192,7 +183,6 @@ export class Api {
             method: "DELETE",
             headers: {
                 authorization: 'ef890c66-d7a0-4a1d-a482-7b78f3f64350',
-                'Content-Type': 'application/json'
             }
         })
             .then(res => {
