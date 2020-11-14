@@ -1,11 +1,12 @@
 export class Card {
-    constructor({ name, link, likes, id }, template, { handleCardClick }) {
+    constructor({ name, link, likes, id }, template, { handleCardClick, handleDeleteClick }) {
         this._name = name;
         this._link = link;
         this._likes = likes;
         this._id = id;
         this._template = template;
         this._handleCardClick = handleCardClick;
+        this._handleDeleteClick = handleDeleteClick;
     }
 
     generateCard() {
@@ -17,11 +18,15 @@ export class Card {
         if (this._likes && this._likes.length > 0)
             this._element.querySelector('.element__likes').innerHTML = this._likes.length;
         this._displayDeleteButton();
-            
+
 
         this._setEventListeners();
 
         return this._element;
+    }
+
+    handleDeleteCard() {
+        this._element.remove();
     }
 
     _displayDeleteButton() {
@@ -29,17 +34,7 @@ export class Card {
         deleteButton.hidden = this._id !== "60e4f7e724f8da16d92e91c2";
     }
 
-    _handleDeleteCard() {
-        this._element.remove();
-    }
-
     _setEventListeners() {
-        this._element
-            .querySelector('.element__delete-button')
-            .addEventListener('click', () => {
-                this._handleDeleteCard();
-            });
-
         this._element
             .querySelector('.element__like-image')
             .addEventListener('click', event => {
@@ -53,11 +48,15 @@ export class Card {
                 like = !like;
                 document.querySelector('.element__likes').innerHTML = likeCount;
 
-            }),
+            });
 
-                this._image
-                    .addEventListener('click', () => this._handleCardClick({ name: this._name, link: this._link }));
+        this._image
+            .addEventListener('click', () => this._handleCardClick({ name: this._name, link: this._link }));
 
-        }
+        this._element
+            .querySelector('.element__delete-button')
+            .addEventListener('click', () => this._handleDeleteClick());
 
     }
+
+}
