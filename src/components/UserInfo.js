@@ -8,13 +8,16 @@ export class UserInfo {
     getUserInfo() {
         return {
             name: this.titleSelector.textContent,
-            jobInput: this.subtitleSelector.textContent
+            about: this.subtitleSelector.textContent,
         }
     }
 
-    setUserInfo({ name, job }) {
+    setUserInfo({ name, about, avatar }) {
         this.titleSelector.textContent = name;
-        this.subtitleSelector.textContent = job;
+        this.subtitleSelector.textContent = about;
+        if(avatar) {
+        this.avatar.src = avatar;
+    }
     }
 
     getUserAvatar() {
