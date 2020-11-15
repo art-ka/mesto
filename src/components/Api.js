@@ -48,11 +48,6 @@ export class Api {
         .catch((err) => {
             console.log(err); // выведем ошибку в консоль
         })
-        /*
-        .finally(() => {
-            PopupWithForm.renderLoading(false);
-            })
-            */
     }
 
     takeUserInfo() {
@@ -77,10 +72,7 @@ export class Api {
             })
     }
 
-    changeAvatar() {
-
-        const inputAvatar = document.querySelector('.popup__field_input_avatar');
-
+    changeAvatar(inputAvatar) {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-17/users/me/avatar', {
             method: "PATCH",
             headers: {
@@ -88,7 +80,7 @@ export class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ 
-                avatar: inputAvatar.value
+                avatar: inputAvatar
             })
         })
             .then(res => {
@@ -107,10 +99,7 @@ export class Api {
             })
     }
 
-    editInfo() {
-        const inputName = document.querySelector('.popup__field_input_name');
-        const inputAbout = document.querySelector('.popup__field_input_job'); 
-
+    editInfo(inputName, inputAbout) {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-17/users/me', {
             method: "PATCH",
             headers: {
@@ -118,8 +107,8 @@ export class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ 
-                name: inputName.value, 
-                about: inputAbout.value 
+                name: inputName, 
+                about: inputAbout
             })
         })
             .then(res => {

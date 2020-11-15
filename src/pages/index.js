@@ -1,7 +1,7 @@
 import { Card } from '../components/Card.js';
 import {
     params, popupAdd, addCardButton, profileEditButton, inputsName, inputsJob,
-    inputsAvatar, profileAvatarButton
+    inputsAvatar, profileAvatarButton, inputsTitle, inputsUrl, avatar
 } from '../utils/constant.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
@@ -71,9 +71,9 @@ popupDelete.setEventListeners();
 
 const formAdd = new PopupWithForm({
     popupSelector: '.popup_type_add',
-    handleFormSubmit: (data) => {
-        const inputTitle = document.querySelector('.popup__field_input_title').value;
-        const inputUrl = document.querySelector('.popup__field_input_url').value;
+    handleFormSubmit: () => {
+        const inputTitle = inputsTitle.value;
+        const inputUrl = inputsUrl.value;
 
         api.addCard(inputTitle, inputUrl).then((item) => {
             const cardElement = new Card({ name: item.name, link: item.link, id: item.owner._id }, generateCardTemplate(), {
@@ -114,7 +114,10 @@ addCardButton.addEventListener('click', () => {
 const formEdit = new PopupWithForm({
     popupSelector: '.popup_type_edit',
     handleFormSubmit: (data) => {
-        api.editInfo().then((data) => data);
+        const inputName = inputsName.value;
+        const inputAbout = inputsJob.value; 
+
+        api.editInfo(inputName, inputAbout).then((data) => data);
         userInfo.setUserInfo({ name: data.fullname, about: data.job });
         formEdit.close();
     }
@@ -144,15 +147,15 @@ formEdit.setEventListeners();
 const formAvatar = new PopupWithForm({
     popupSelector: '.popup_type_avatar',
     handleFormSubmit: (data) => {
-        api.changeAvatar().then((data) => data);
+        const inputAvatar = inputsAvatar.value;
+
+        api.changeAvatar(inputAvatar).then((data) => data);
         userInfo.setAvatar({ avatar: data.avatar });
         formAvatar.close();
     }
 });
 
 profileAvatarButton.addEventListener('click', () => {
-    const avatar = document.querySelector('.profile__avatar');
-
     inputsAvatar.value = avatar.src;
 
     formAvatar.open();
