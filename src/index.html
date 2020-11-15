@@ -18,13 +18,15 @@
             <div class="main">
                 <main class="content">
                     <section class="profile">
-                        <img src="./images/image.jpg" alt="Аватарка пользователя" class="profile__avatar" />
+                        <div class="profile__user">
+                            <img src="#" alt="Аватарка пользователя" class="profile__avatar" />
+                        </div>
                         <div class="profile__info">
-                            <h1 class="profile__title">Жак-Ив Кусто</h1>
+                            <h1 class="profile__title"></h1>
                             <button class="profile__edit-button" type="button">
                                 <img class="profile__edit-button-image" src="./images/edit.svg" alt="Редактировать" />
                             </button>
-                            <p class="profile__subtitle">Исследователь океана</p>
+                            <p class="profile__subtitle"></p>
                         </div>
                         <button class="profile__add-button" type="button">
                             <img class="profile__add-button-image" src="./images/add-buton.svg" alt="Добавить фото" />
@@ -34,7 +36,7 @@
                     <section class="elements">
                         <ul class="element"></ul>
                     </section>
-                    
+
                 </main>
 
                 <footer class="footer">
@@ -99,6 +101,41 @@
         </div>
     </section>
 
+    <section class="popup popup_type_avatar">
+        <div class="popup__container">
+            <button class="popup__close popup__close_type_img" type="button">
+                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть окно обновления аватара" />
+            </button>
+            <div class="popup__content">
+                <h3 class="popup__title">Обновить аватар</h3>
+                <form class="popup__form" name="avatar-form">
+                    <input type="url" id="url-input" value="" name="avatar"
+                        class="popup__field popup__field_input_avatar" required />
+                    <span id="url-input-error" class="popup__field-error"></span>
+                    <button class="popup__submit-button" type="submit" value="Сохранить">
+                        Сохранить
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="popup popup_type_delete">
+        <div class="popup__container popup__container-delete">
+            <button class="popup__close popup__close_type_img" type="button">
+                <img class="popup__close-image" src="./images/Close Icon.svg" alt="Закрыть окно обновления аватара" />
+            </button>
+            <div class="popup__content">
+                <h3 class="popup__title popup__title-delete">Вы уверены?</h3>
+                <form class="popup__form" name="delete-form">
+                    <button class="popup__submit-button popup__submit-button-delete" type="button" value="Да">
+                        Да
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <template id="elements">
         <li class="element__cards">
             <img class="element__image" src="#" />
@@ -107,6 +144,7 @@
                 <button class="element__like-button" type="button">
                     <img class="element__like-image" src="./images/heart.svg" alt="Поставить лайк" />
                 </button>
+                <div class="element__likes"></div>
                 <button class="element__delete-button" type="button"></button>
             </div>
         </li>
