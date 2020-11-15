@@ -34,7 +34,8 @@ export class Api {
                 name: inputTitle, 
                 link: inputUrl 
             })
-        }).then((res) => {
+        })
+        .then((res) => {
             if (res.ok) {
                 return res.json();
             }
@@ -47,6 +48,11 @@ export class Api {
         .catch((err) => {
             console.log(err); // выведем ошибку в консоль
         })
+        /*
+        .finally(() => {
+            PopupWithForm.renderLoading(false);
+            })
+            */
     }
 
     takeUserInfo() {
