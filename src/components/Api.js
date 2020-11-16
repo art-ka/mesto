@@ -6,9 +6,7 @@ export class Api {
 
     getInitialCards() {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-17/cards', {
-            headers: {
-                authorization: 'ef890c66-d7a0-4a1d-a482-7b78f3f64350'
-            }
+            headers: this.headers
         })
             .then(res => {
                 if (res.ok) {
@@ -30,31 +28,29 @@ export class Api {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-17/cards', {
             method: "POST",
             headers: this.headers,
-            body: JSON.stringify({ 
-                name: inputTitle, 
-                link: inputUrl 
+            body: JSON.stringify({
+                name: inputTitle,
+                link: inputUrl
             })
         })
-        .then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            // если ошибка, отклоняем промис
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .then((data) => {
-            return data;
-        })
-        .catch((err) => {
-            console.log(err); // выведем ошибку в консоль
-        })
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                // если ошибка, отклоняем промис
+                return Promise.reject(`Ошибка: ${res.status}`);
+            })
+            .then((data) => {
+                return data;
+            })
+            .catch((err) => {
+                console.log(err); // выведем ошибку в консоль
+            })
     }
 
     takeUserInfo() {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-17/users/me', {
-            headers: {
-                authorization: 'ef890c66-d7a0-4a1d-a482-7b78f3f64350'
-            }
+            headers: this.headers
         })
             .then(res => {
                 if (res.ok) {
@@ -75,11 +71,8 @@ export class Api {
     changeAvatar(inputAvatar) {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-17/users/me/avatar', {
             method: "PATCH",
-            headers: {
-                authorization: 'ef890c66-d7a0-4a1d-a482-7b78f3f64350',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ 
+            headers: this.headers,
+            body: JSON.stringify({
                 avatar: inputAvatar
             })
         })
@@ -102,12 +95,9 @@ export class Api {
     editInfo(inputName, inputAbout) {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-17/users/me', {
             method: "PATCH",
-            headers: {
-                authorization: 'ef890c66-d7a0-4a1d-a482-7b78f3f64350',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ 
-                name: inputName, 
+            headers: this.headers,
+            body: JSON.stringify({
+                name: inputName,
                 about: inputAbout
             })
         })
@@ -130,9 +120,7 @@ export class Api {
     likeCard(_id) {
         return fetch(`https://mesto.nomoreparties.co/v1/cohort-17/cards/likes/${_id}`, {
             method: "PUT",
-            headers: {
-                authorization: 'ef890c66-d7a0-4a1d-a482-7b78f3f64350',
-            },
+            headers: this.headers
         })
             .then(res => {
                 if (res.ok) {
@@ -153,9 +141,7 @@ export class Api {
     deleteLikeCard(_id) {
         return fetch(`https://mesto.nomoreparties.co/v1/cohort-17/cards/likes/${_id}`, {
             method: "DELETE",
-            headers: {
-                authorization: 'ef890c66-d7a0-4a1d-a482-7b78f3f64350',
-            }
+            headers: this.headers
         })
             .then(res => {
                 if (res.ok) {
@@ -176,9 +162,7 @@ export class Api {
     deleteCard(_id) {
         return fetch(`https://mesto.nomoreparties.co/v1/cohort-17/cards/${_id}`, {
             method: "DELETE",
-            headers: {
-                authorization: 'ef890c66-d7a0-4a1d-a482-7b78f3f64350',
-            }
+            headers: this.headers
         })
             .then(res => {
                 if (res.ok) {
