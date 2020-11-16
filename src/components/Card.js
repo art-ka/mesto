@@ -19,17 +19,15 @@ export class Card {
         this._image.src = this._link;
         this._image.alt = this._name;
         this._element.querySelector('.element__title').textContent = this._name;
-        if (this._likes && this._likes.length > 0) {
-            this._element.querySelector('.element__likes').textContent = this._likes.length;
-//отображение активного элемента лайк после перезагрузки страницы
-            if (this._likes.find((like) => like._id === MY_ID)) {
-                this._element
-                    .querySelector('.element__like-image').classList.add('element__like-image-active');
-            }
-        }
-
         this._likesCount = this._element.querySelector('.element__likes');
         this._likeButton = this._element.querySelector('.element__like-image');
+        if (this._likes && this._likes.length > 0) {
+            this._likesCount.textContent = this._likes.length;
+//отображение активного элемента лайк после перезагрузки страницы
+            if (this._likes.find((like) => like._id === MY_ID)) {
+                this._likeButton.classList.add('element__like-image-active');
+            }
+        }
         
         this._displayDeleteButton();
         this._setEventListeners();
