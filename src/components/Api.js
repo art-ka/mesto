@@ -16,9 +16,6 @@ export class Api {
                 // если ошибка, отклоняем промис
                 return Promise.reject(`Ошибка: ${res.status}`);
             })
-            .then((data) => {
-                return data;
-            })
             .catch((err) => {
                 console.log(err); // выведем ошибку в консоль
             })
@@ -40,9 +37,6 @@ export class Api {
                 // если ошибка, отклоняем промис
                 return Promise.reject(`Ошибка: ${res.status}`);
             })
-            .then((data) => {
-                return data;
-            })
             .catch((err) => {
                 console.log(err); // выведем ошибку в консоль
             })
@@ -59,9 +53,6 @@ export class Api {
 
                 // если ошибка, отклоняем промис
                 return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .then((data) => {
-                return data;
             })
             .catch((err) => {
                 console.log(err); // выведем ошибку в консоль
@@ -83,9 +74,6 @@ export class Api {
 
                 // если ошибка, отклоняем промис
                 return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .then((data) => {
-                return data;
             })
             .catch((err) => {
                 console.log(err); // выведем ошибку в консоль
@@ -109,9 +97,6 @@ export class Api {
                 // если ошибка, отклоняем промис
                 return Promise.reject(`Ошибка: ${res.status}`);
             })
-            .then((data) => {
-                return data;
-            })
             .catch((err) => {
                 console.log(err); // выведем ошибку в консоль
             })
@@ -130,9 +115,6 @@ export class Api {
                 // если ошибка, отклоняем промис
                 return Promise.reject(`Ошибка: ${res.status}`);
             })
-            .then((data) => {
-                return data;
-            })
             .catch((err) => {
                 console.log(err); // выведем ошибку в консоль
             })
@@ -150,9 +132,6 @@ export class Api {
 
                 // если ошибка, отклоняем промис
                 return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .then((data) => {
-                return data;
             })
             .catch((err) => {
                 console.log(err); // выведем ошибку в консоль

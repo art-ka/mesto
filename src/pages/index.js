@@ -32,30 +32,33 @@ const generateCardTemplate = () => document
 const popupImage = new PopupWithImage('.popup_type_img', '.popup__image', '.popup__caption');
 popupImage.setEventListeners();
 
+const generateCardFromResponseData = (responseData) => {
+    const cardElement = new Card({ name: responseData.name, link: responseData.link, likes: responseData.likes, ownerId: responseData.owner._id, id: responseData._id }, generateCardTemplate(), {
+        handleCardClick: ({ name, link }) => {
+            popupImage.open(name, link);
+        },
+        handleDeleteClick: () => {
+            popupDelete.open(() => {
+                api.deleteCard(responseData._id).then(() => cardElement.handleDeleteCard());
+                popupDelete.close();
+            });
+        },
+        handleLikeClick: () => {
+            if (cardElement.isLiked()) {
+                api.deleteLikeCard(responseData._id).then(() => cardElement.likeCountMinus());
+            } else {
+                api.likeCard(responseData._id).then(() => cardElement.likeCountPlus());
+            }
+        }
+    });
+
+    return cardElement.generateCard();
+}
 
 const cardsList = new Section({
     items: getCardElement,
-    renderer: (item) => {
-        const cardElement = new Card({ name: item.name, link: item.link, likes: item.likes, id: item.owner._id }, generateCardTemplate(), {
-            handleCardClick: ({ name, link }) => {
-                popupImage.open(name, link);
-            },
-            handleDeleteClick: () => {
-                popupDelete.open(() => {
-                    api.deleteCard(item._id).then(() => cardElement.handleDeleteCard());
-                    popupDelete.close();
-                });
-            },
-            handleLikeClick: () => {
-                if (cardElement.isLiked()) {
-                    api.deleteLikeCard(item._id).then(() => cardElement.likeCountMinus());
-                } else {
-                    api.likeCard(item._id).then(() => cardElement.likeCountPlus());
-                }
-            }
-        });
-
-        cardsList.addItem(cardElement.generateCard());
+    renderer: (responseData) => {
+        cardsList.addItem(generateCardFromResponseData(responseData));
     }
 },
     '.element'
@@ -75,26 +78,8 @@ const formAdd = new PopupWithForm({
         const inputTitle = inputsTitle.value;
         const inputUrl = inputsUrl.value;
 
-        api.addCard(inputTitle, inputUrl).then((item) => {
-            const cardElement = new Card({ name: item.name, link: item.link, id: item.owner._id }, generateCardTemplate(), {
-                handleCardClick: ({ name, link }) => {
-                    popupImage.open(name, link);
-                },
-                handleDeleteClick: () => {
-                    popupDelete.open(() => {
-                        api.deleteCard(item._id).then(() => cardElement.handleDeleteCard());
-                        popupDelete.close();
-                    });
-                },
-                handleLikeClick: () => {
-                    if (cardElement.isLiked()) {
-                        api.deleteLikeCard(item._id).then(() => cardElement.likeCountMinus());
-                    } else {
-                        api.likeCard(item._id).then(() => cardElement.likeCountPlus());
-                    }
-                }
-            });
-            cardsList.addItem(cardElement.generateCard());
+        api.addCard(inputTitle, inputUrl).then((responseData) => {
+            cardsList.addItem(generateCardFromResponseData(responseData));
             formAdd.close();
         });
     },

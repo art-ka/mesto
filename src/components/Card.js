@@ -1,9 +1,12 @@
+const MY_ID = "60e4f7e724f8da16d92e91c2";
+
 export class Card {
-    constructor({ name, link, likes, id }, template, { handleCardClick, handleDeleteClick, handleLikeClick }) {
+    constructor({ name, link, likes, ownerId, id }, template, { handleCardClick, handleDeleteClick, handleLikeClick }) {
         this._name = name;
         this._link = link;
         this._likes = likes;
         this._id = id;
+        this._ownerId = ownerId;
         this._template = template;
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
@@ -16,15 +19,16 @@ export class Card {
         this._image.src = this._link;
         this._image.alt = this._name;
         this._element.querySelector('.element__title').textContent = this._name;
+        this._likesCount = this._element.querySelector('.element__likes');
+        this._likeButton = this._element.querySelector('.element__like-image');
         if (this._likes && this._likes.length > 0) {
-            this._element.querySelector('.element__likes').innerHTML = this._likes.length;
+            this._likesCount.textContent = this._likes.length;
 //отображение активного элемента лайк после перезагрузки страницы
-            if (this._likes.find((like) => like._id === "60e4f7e724f8da16d92e91c2")) {
-                this._element
-                    .querySelector('.element__like-image').classList.add('element__like-image-active');
+            if (this._likes.find((like) => like._id === MY_ID)) {
+                this._likeButton.classList.add('element__like-image-active');
             }
         }
-
+        
         this._displayDeleteButton();
         this._setEventListeners();
 
@@ -35,8 +39,12 @@ export class Card {
         this._element.remove();
     }
 
+    getId() {
+        return this._id;
+    }
+
     isLiked() {
-        return this._element.querySelector('.element__like-image').classList.contains('element__like-image-active');
+        return this._likeButton.classList.contains('element__like-image-active');
     }
 
     updateLikes(likes) {
@@ -44,27 +52,24 @@ export class Card {
     }
 
     likeCountPlus() {
-        this._element
-            .querySelector('.element__like-image').classList.add('element__like-image-active');
-        const currentValue = +this._element.querySelector('.element__likes').innerHTML;
-        this._element.querySelector('.element__likes').innerHTML = currentValue + 1;
+        this._likeButton.classList.add('element__like-image-active');
+        const currentValue = +this._likesCount.textContent;
+        this._likesCount.textContent = currentValue + 1;
     }
 
     likeCountMinus() {
-        this._element
-            .querySelector('.element__like-image').classList.remove('element__like-image-active');
-        const currentValue = this._element.querySelector('.element__likes').innerHTML;
-        this._element.querySelector('.element__likes').innerHTML = currentValue - 1;
+        this._likeButton.classList.remove('element__like-image-active');
+        const currentValue = this._likesCount.textContent;
+        this._likesCount.textContent = currentValue - 1;
     }
 
     _displayDeleteButton() {
-        const deleteButton = this._element.querySelector('.element__delete-button')
-        deleteButton.hidden = this._id !== "60e4f7e724f8da16d92e91c2";
+        const deleteButton = this._element.querySelector('.element__delete-button');
+        deleteButton.hidden = this._ownerId !== MY_ID;
     }
 
     _setEventListeners() {
-        this._element
-            .querySelector('.element__like-image')
+        this._likeButton
             .addEventListener("click", () => this._handleLikeClick());
 
         this._image
