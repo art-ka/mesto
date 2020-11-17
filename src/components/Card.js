@@ -1,12 +1,13 @@
-const MY_ID = "60e4f7e724f8da16d92e91c2";
+//const MY_ID = "60e4f7e724f8da16d92e91c2";
 
 export class Card {
-    constructor({ name, link, likes, ownerId, id }, template, { handleCardClick, handleDeleteClick, handleLikeClick }) {
+    constructor({ name, link, likes, ownerId, id, userId }, template, { handleCardClick, handleDeleteClick, handleLikeClick }) {
         this._name = name;
         this._link = link;
         this._likes = likes;
         this._id = id;
         this._ownerId = ownerId;
+        this._userId = userId;
         this._template = template;
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
@@ -24,7 +25,7 @@ export class Card {
         if (this._likes && this._likes.length > 0) {
             this._likesCount.textContent = this._likes.length;
 //отображение активного элемента лайк после перезагрузки страницы
-            if (this._likes.find((like) => like._id === MY_ID)) {
+            if (this._likes.find((like) => like._id === this._userId)) {
                 this._likeButton.classList.add('element__like-image-active');
             }
         }
@@ -65,7 +66,7 @@ export class Card {
 
     _displayDeleteButton() {
         const deleteButton = this._element.querySelector('.element__delete-button');
-        deleteButton.hidden = this._ownerId !== MY_ID;
+        deleteButton.hidden = this._ownerId !== this._userId;
     }
 
     _setEventListeners() {

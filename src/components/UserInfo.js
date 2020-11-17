@@ -12,7 +12,7 @@ export class UserInfo {
         }
     }
 
-    setUserInfo({ name, about, avatar }) {
+    setUserInfo({ name, about, avatar, id }) {
         this.titleSelector.textContent = name;
         this.subtitleSelector.textContent = about;
         if(avatar) {
