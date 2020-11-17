@@ -21,6 +21,9 @@ const api = new Api({
     }
 });
 
+let userId;
+api.takeUserInfo().then((data) => { userId = data._id });
+
 const userInfo = new UserInfo();
 
 const generateCardTemplate = () => document
@@ -33,7 +36,8 @@ const popupImage = new PopupWithImage('.popup_type_img', '.popup__image', '.popu
 popupImage.setEventListeners();
 
 const generateCardFromResponseData = (responseData) => {
-    const cardElement = new Card({ name: responseData.name, link: responseData.link, likes: responseData.likes, ownerId: responseData.owner._id, id: responseData._id }, generateCardTemplate(), {
+    const cardElement = new Card({ name: responseData.name, link: responseData.link, likes: responseData.likes, 
+        ownerId: responseData.owner._id, id: responseData._id, userId }, generateCardTemplate(), {
         handleCardClick: ({ name, link }) => {
             popupImage.open(name, link);
         },
@@ -108,15 +112,14 @@ const formEdit = new PopupWithForm({
     }
 });
 
-
 function putProfileInfo() {
     api.takeUserInfo().then((data) => {
-        userInfo.setUserInfo({ name: data.name, about: data.about, avatar: data.avatar });
+        userInfo.setUserInfo({ name: data.name, about: data.about, avatar: data.avatar, userid: data._id });
     });
+    
 }
 
 putProfileInfo();
-
 
 profileEditButton.addEventListener('click', () => {
     const profile = userInfo.getUserInfo();
