@@ -1,5 +1,3 @@
-//const MY_ID = "60e4f7e724f8da16d92e91c2";
-
 export class Card {
     constructor({ name, link, likes, ownerId, id, userId }, template, { handleCardClick, handleDeleteClick, handleLikeClick }) {
         this._name = name;
