@@ -1,4 +1,4 @@
-# Social network user profile "Place" | [На русском](#anchortext)
+# Social network user profile «Place» | [На русском](#anchortext)
 
 ### Content
 
@@ -35,7 +35,7 @@ In my work, I used HTML, CSS (including flex, grid), JS, BEM.
 Registration and authorization. Backend implementation.
 
 
-# <a name="anchortext" />Страница пользователя в социальной сети "Место"
+# <a name="anchortext" />Страница пользователя в социальной сети «Место»
 
 ### Обзор
 
